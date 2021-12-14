@@ -18,10 +18,10 @@ class CreateUsersTable extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->string('phone');
-            $table->string('img_url');
+            $table->string('img_url')->nullable();
             $table->unsignedBigInteger('role_id');
             $table->foreign('role_id')->references('id')->on('role_memberships');
-            $table->boolean('is_membership');
+            $table->boolean('is_membership')->default(false);
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
