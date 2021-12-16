@@ -53,7 +53,7 @@
                                 <li><a href="#">Profile</a></li>
                                 <li>
                                     <a href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                          document.getElementById('logout-form').submit();">
+                                                              document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST"
@@ -151,7 +151,7 @@
         <div id="preloader"></div>
         <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
                 class="bi bi-arrow-up-short"></i></a>
-
+        <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
         <script src="{{ asset('vendor/purecounter/purecounter.js') }}"></script>
         <script src="{{ asset('vendor/aos/aos.js') }}"></script>
         <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>

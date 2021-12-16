@@ -26,3 +26,6 @@ Route::get('/faq', function () {
 Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('admin/home', [HomeController::class, 'adminHome'])->name('admin.home')->middleware('is_admin');
+Route::get('/admin/sample', function () {
+    return view('admin.sample');
+});
