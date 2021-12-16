@@ -2,7 +2,6 @@
 
 @section('content')
 
-    <main id="main">
 
         <section id="faq" class="faq section-bg">
             <div class="container" data-aos="fade-up">
@@ -112,5 +111,4 @@
             </div>
         </section>
 
-    </main>
 @endsection
