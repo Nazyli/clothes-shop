@@ -34,11 +34,11 @@
 
             <nav id="navbar" class="navbar">
                 <ul>
-                    <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+                    <li><a class="nav-link scrollto active" href="{{ url('/') }}">Home</a></li>
                     <li><a class="nav-link scrollto" href="#promo">Promo</a></li>
                     <li><a class="nav-link scrollto" href="#collection">Collection</a></li>
                     <li><a class="nav-link scrollto" href="#product">Catalog</a></li>
-                    <li><a class="nav-link scrollto " href="#faq">FAQ</a></li>
+                    <li><a class="nav-link scrollto " href="{{ url('/faq#faq') }}">FAQ</a></li>
                     <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
                     <li><a class="nav-link scrollto" href="#team">Shop</a></li>
                     @guest
@@ -113,12 +113,12 @@
                         <div class="col-lg-3 col-md-6 footer-links">
                             <h4>Information</h4>
                             <ul>
-                                <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
+                                <li><i class="bx bx-chevron-right"></i> <a href="{{ url('/') }}">Home</a></li>
                                 <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
                                 <li><i class="bx bx-chevron-right"></i> <a href="#">Cara Custome Pakaian</a></li>
                                 <li><i class="bx bx-chevron-right"></i> <a href="#">Cara Mengukur Pakaian</a></li>
                                 <li><i class="bx bx-chevron-right"></i> <a href="#">Syarat dan Ketentuan</a></li>
-                                <li><i class="bx bx-chevron-right"></i> <a href="#">FAQ</a></li>
+                                <li><i class="bx bx-chevron-right"></i> <a href="{{ url('/faq#faq') }}">FAQ</a></li>
                             </ul>
                         </div>
 
