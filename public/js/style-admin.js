@@ -129,9 +129,9 @@ $(function () {
     });
   });
 });
-function swalSuccesDelete(ev) {
-  ev.preventDefault();
-  var urlToRedirect = ev.currentTarget.getAttribute('href');
+$('.swalSuccesDelete').click(function(event) {
+  var form =  $(this).closest("form");
+  event.preventDefault();
   Swal.fire({
     title: ' Hapus Data!',
     text: "Apakah anda yakin ingin menghapus data ini ?",
@@ -142,10 +142,11 @@ function swalSuccesDelete(ev) {
     confirmButtonText: 'Yes, delete it!'
   }).then((result) => {
     if (result.isConfirmed) {
-      window.location = urlToRedirect;
+      form.submit();
     }
   })
-}
+});
+
 function showNotif(status, message) {
   toastr.options = {
     "closeButton": true,

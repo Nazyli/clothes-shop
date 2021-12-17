@@ -153,10 +153,10 @@
                         <li class="nav-header">Master Data</li>
 
                         <li class="nav-item">
-                            <a href="admin" class="nav-link">
-                                <i class="nav-icon fas fa-map-marked-alt"></i>
+                            <a href="{{ url('admin/faq') }}" class="nav-link">
+                                <i class="nav-icon fas fa-question"></i>
                                 <p>
-                                    Menu 1
+                                    Master Faq
                                 </p>
                             </a>
                         </li>
@@ -164,7 +164,7 @@
                             <a href="admin" class="nav-link">
                                 <i class="nav-icon fas fa-drumstick-bite"></i>
                                 <p>
-                                    Menu 2
+                                    Master Category
                                 </p>
                             </a>
                         </li>
@@ -173,12 +173,12 @@
                             <a href="admin/profesi" class="nav-link">
                                 <i class="nav-icon fas fa-industry"></i>
                                 <p>
-                                    Menu 3
+                                    Master Role
                                 </p>
                             </a>
                         </li>
 
-                        <li class="nav-header">Profile</li>
+                        <li class="nav-header">Account</li>
                         <li class="nav-item">
                             <a href="admin/users" class="nav-link">
                                 <i class="nav-icon fas fa-users"></i>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\MasterFaqController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -28,4 +29,8 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('admin/home', [HomeController::class, 'adminHome'])->name('admin.home')->middleware('is_admin');
 Route::get('/admin/sample', function () {
     return view('admin.sample');
+});
+
+Route::group(['namespace' => '', 'prefix' => 'admin',  'middleware' => ['auth', 'is_admin']], function () {
+    Route::resource('faq', MasterFaqController::class);
 });
