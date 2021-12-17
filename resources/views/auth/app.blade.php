@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css">
-    <link rel="stylesheet" href="{{ url('vendor/izitoast/css/iziToast.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendor/toastr/toastr.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap-social.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style-auth.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.css">
@@ -50,38 +50,18 @@
         </div>
 
 </body>
-<script src="https://code.jquery.com/jquery-3.4.1.slim.js"></script>
+<script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js"></script>
-<script src="{{ url('vendor/izitoast/js/iziToast.min.js') }}"></script>
+<script src="{{ asset('vendor/toastr/toastr.min.js') }}"></script>
+<script src="{{ asset('js/login.js') }}"></script>
 <script>
-    $('.features').owlCarousel({
-        loop: false,
-        margin: 10,
-        nav: false,
-        dots: true,
-        responsive: {
-            0: {
-                items: 1
-            }
-        }
-    })
-    @if (session('sukses'))
-        iziToast.success({
-        icon: 'far fa-check-circle',
-        title: 'Sukses',
-        message: "{{ session('sukses') }}",
-        position: 'topRight'
-        });
+    @if (session('success'))
+        $(document).ready(showNotif('success', '{{ session('success') }}'));
     @endif
     @if (session('error'))
-        iziToast.error({
-        icon: 'fa fa-exclamation-circle',
-        title: 'Gagal',
-        message: "{{ session('error') }}",
-        position: 'topRight'
-        });
+        $(document).ready(showNotif('error', '{{ session('error') }}'));
     @endif
 </script>
 

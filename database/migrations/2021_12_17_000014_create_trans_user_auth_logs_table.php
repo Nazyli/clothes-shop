@@ -17,10 +17,13 @@ class CreateTransUserAuthLogsTable extends Migration
             $table->id();
             $table->string('auth_action');
             $table->string('auth_status');
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->string('ip')->nullable();
-            $table->string('mac_addreas')->nullable();
+            $table->string('ip_address')->nullable();
+            $table->string('user_agent')->nullable();
+            $table->string('device')->nullable();
+            $table->string('platform')->nullable();
+            $table->string('browser')->nullable();
 
             $table->timestamps();
         });
