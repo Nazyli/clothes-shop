@@ -34,6 +34,7 @@ class CreateOrdersTable extends Migration
             $table->unsignedBigInteger('payments_id');
             $table->foreign('payments_id')->references('id')->on('payment_methods');
             $table->string('url_evidence_transfer')->nullable();
+            $table->string('no_resi')->nullable();
             $table->timestamps();
         });
     }

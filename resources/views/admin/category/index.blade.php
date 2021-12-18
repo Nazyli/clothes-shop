@@ -47,7 +47,7 @@
                                     </div>
                                     <button class="btn btn-primary btn-block"><b>Save</b></button>
                                     @isset($category)
-                                        <a href="{{ url('admin/faq') }}" class="btn btn-secondary btn-block"><b>Cancel</b></a>
+                                        <a href="{{ url('admin/category') }}" class="btn btn-secondary btn-block"><b>Cancel</b></a>
                                     @endisset
                                 </form>
                             </div>
@@ -56,7 +56,7 @@
                     <div class="col-md-9">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Master Category</h3>
+                                <h3 class="card-title">Data</h3>
                                 <div class="card-tools">
                                     <button type="button" class="btn btn-tool" data-card-widget="collapse"
                                         title="Collapse">
