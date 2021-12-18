@@ -96,7 +96,7 @@
                         <img src="{{ asset('img/shop.png') }}" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="admin/home" class="d-block">Administrator</a>
+                        <a href="{{ url('admin/home') }}" class="d-block">Administrator</a>
                     </div>
                 </div>
 
@@ -161,8 +161,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="admin" class="nav-link">
-                                <i class="nav-icon fas fa-drumstick-bite"></i>
+                            <a href="{{ url('admin/category') }}" class="nav-link">
+                                <i class="nav-icon fas fa-list-alt"></i>
                                 <p>
                                     Master Category
                                 </p>
@@ -170,8 +170,17 @@
                         </li>
 
                         <li class="nav-item">
-                            <a href="admin/profesi" class="nav-link">
-                                <i class="nav-icon fas fa-industry"></i>
+                            <a href="{{ url('admin/payment') }}" class="nav-link">
+                                <i class="nav-icon fas fa-credit-card"></i>
+                                <p>
+                                    Master Payment
+                                </p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="{{ url('admin/role') }}" class="nav-link">
+                                <i class="nav-icon fas fa-key"></i>
                                 <p>
                                     Master Role
                                 </p>
@@ -180,7 +189,7 @@
 
                         <li class="nav-header">Account</li>
                         <li class="nav-item">
-                            <a href="admin/users" class="nav-link">
+                            <a href="{{ url('admin/users') }}" class="nav-link">
                                 <i class="nav-icon fas fa-users"></i>
                                 <p>
                                     Membership

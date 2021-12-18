@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\MasterCategoryController;
 use App\Http\Controllers\Admin\MasterFaqController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
@@ -33,4 +34,5 @@ Route::get('/admin/sample', function () {
 
 Route::group(['namespace' => '', 'prefix' => 'admin',  'middleware' => ['auth', 'is_admin']], function () {
     Route::resource('faq', MasterFaqController::class);
+    Route::resource('category', MasterCategoryController::class);
 });
