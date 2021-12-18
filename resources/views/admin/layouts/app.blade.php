@@ -36,14 +36,14 @@
             <ul class="navbar-nav ml-auto">
                 <li class="dropdown user user-menu">
                     <a class="nav-link" data-toggle="dropdown" href="#">
-                        <img src="{{ asset('img/default.png') }}" class="user-image-sm" alt="User Image">
+                        <img src="{{ Auth::user()->pathImg() }}" class="user-image-sm" alt="User Image">
                         <span class="hidden-xs">
                             {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}
                         </span>
                     </a>
                     <ul class="dropdown-menu">
                         <li class="user-header">
-                            <img src="{{ asset('img/default.png') }}" class="img-circle" alt="User Image">
+                            <img src="{{ Auth::user()->pathImg() }}" class="img-circle" alt="User Image">
                             <p>
                                 {{ Auth::user()->first_name }} {{ Auth::user()->last_name }} -
                                 Administrator
@@ -189,7 +189,7 @@
 
                         <li class="nav-header">Account</li>
                         <li class="nav-item">
-                            <a href="{{ url('admin/users') }}" class="nav-link">
+                            <a href="{{ url('admin/user') }}" class="nav-link">
                                 <i class="nav-icon fas fa-users"></i>
                                 <p>
                                     Membership

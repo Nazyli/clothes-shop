@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\Storage;
 
 class User extends Authenticatable
 {
@@ -24,6 +25,7 @@ class User extends Authenticatable
         'role_id',
         'email',
         'password',
+        'img_url'
     ];
 
     /**
@@ -44,4 +46,21 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function role()
+    {
+        return $this->belongsTo(RoleMembership::class);
+    }
+
+    public function getFullName()
+    {
+        return "{$this->first_name} {$this->last_name}";
+    }
+
+    public function pathImg()
+    {
+        return isset($this->img_url) ? asset($this->img_url) : asset("user/default.png");
+    }
+
+    
 }
