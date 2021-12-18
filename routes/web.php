@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\MasterCategoryController;
 use App\Http\Controllers\Admin\MasterFaqController;
 use App\Http\Controllers\Admin\MasterPaymentController;
+use App\Http\Controllers\Admin\MasterRoleController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -37,4 +38,5 @@ Route::group(['namespace' => '', 'prefix' => 'admin',  'middleware' => ['auth', 
     Route::resource('faq', MasterFaqController::class);
     Route::resource('category', MasterCategoryController::class);
     Route::resource('payment', MasterPaymentController::class);
+    Route::resource('role', MasterRoleController::class);
 });
