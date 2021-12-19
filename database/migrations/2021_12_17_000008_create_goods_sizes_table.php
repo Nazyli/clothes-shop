@@ -15,10 +15,11 @@ class CreateGoodsSizesTable extends Migration
     {
         Schema::create('goods_sizes', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('goods_colors_id');
-            $table->foreign('goods_colors_id')->references('id')->on('goods_colors');
+            $table->unsignedBigInteger('goods_color_id');
+            $table->foreign('goods_color_id')->references('id')->on('goods_colors');
             $table->string("size");
             $table->float("additional_price");
+            $table->integer("qty");
             $table->timestamps();
         });
     }

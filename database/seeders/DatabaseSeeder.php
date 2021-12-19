@@ -117,14 +117,15 @@ class DatabaseSeeder extends Seeder
                     $idColor = GoodsColor::insertGetId([
                         "goods_id" => $id,
                         "color" => $faker->colorName,
-                        "additional_price" => $faker->numberBetween(50000, 250000),
+                        "additional_price" => $faker->numberBetween(1000, 5000),
                     ]);
                     $size = ["XS", "S", "M", "L", "XL", "XXL"];
                     for ($k = 0; $k < count($size); $k++) {
                         GoodsSize::insertGetId([
-                            "goods_colors_id" => $idColor,
+                            "goods_color_id" => $idColor,
                             "size" => $size[$k],
-                            "additional_price" => $faker->numberBetween(50000, 250000),
+                            "additional_price" => $faker->numberBetween(1000, 5000),
+                            "qty" => $faker->numberBetween(1,5),
                         ]);
                     }
                 }

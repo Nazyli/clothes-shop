@@ -10,6 +10,7 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <link rel="stylesheet" href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendor/ekko-lightbox/ekko-lightbox.css') }}">
     <link rel="stylesheet" href="{{ asset('vendor/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendor/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendor/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
@@ -124,6 +125,14 @@
                                 <i class="nav-icon fas fa-comment"></i>
                                 <p>
                                     Konfirmasi Pembayaran
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url('admin/goods') }}" class="nav-link">
+                                <i class="nav-icon fas fa-tshirt"></i>
+                                <p>
+                                    Data Baju
                                 </p>
                             </a>
                         </li>
