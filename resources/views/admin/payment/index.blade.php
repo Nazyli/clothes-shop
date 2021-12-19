@@ -85,19 +85,21 @@
                                                 <td class="text-primary">{{ $value->id }} </td>
                                                 <td>{{ $value->name }}</td>
                                                 <td class="text-center">
-                                                    <form action="{{ route('payment.destroy', $value->id) }}"
-                                                        method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
+                                                    <div class="btn-group">
+                                                        <form action="{{ route('payment.destroy', $value->id) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
 
-                                                        <a href="{{ route('payment.edit', $value->id) }}"
-                                                            class="btn btn-outline-primary btn-xs"><i
-                                                                class="fas fa-pencil-alt fa-xl"></i></a>
+                                                            <a href="{{ route('payment.edit', $value->id) }}"
+                                                                class="btn btn-outline-primary btn-xs"><i
+                                                                    class="fas fa-pencil-alt fa-xl"></i></a>
 
-                                                        <button type="submit"
-                                                            class="btn btn-outline-danger btn-xs swalSuccesDelete"><i
-                                                                class="fas fa-trash fa-xl"></i></button>
-                                                    </form>
+                                                            <button type="submit"
+                                                                class="btn btn-outline-danger btn-xs swalSuccesDelete"><i
+                                                                    class="fas fa-trash fa-xl"></i></button>
+                                                        </form>
+                                                    </div>
                                                 </td>
                                             </tr>
                                         @endforeach

@@ -52,7 +52,8 @@
                                         @foreach ($users as $key => $value)
                                             <tr>
                                                 <td>
-                                                    <img src="{{ $value->pathImg() }}" class="img-circle img-size-32 mr-2">
+                                                    <img src="{{ $value->pathImg() }}"
+                                                        class="img-circle img-size-32 mr-2">
                                                     {{ $value->getFullName() }}
                                                 </td>
                                                 <td>{{ $value->phone }}</td>
@@ -63,18 +64,22 @@
 
                                                 </td>
                                                 <td class="text-center">
-                                                    <form action="{{ route('user.destroy', $value->id) }}" method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
+                                                    <div class="btn-group">
 
-                                                        <a href="{{ route('user.edit', $value->id) }}"
-                                                            class="btn btn-outline-primary btn-xs"><i
-                                                                class="fas fa-pencil-alt fa-xl"></i></a>
+                                                        <form action="{{ route('user.destroy', $value->id) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
 
-                                                        <button type="submit"
-                                                            class="btn btn-outline-danger btn-xs swalSuccesDelete"><i
-                                                                class="fas fa-trash fa-xl"></i></button>
-                                                    </form>
+                                                            <a href="{{ route('user.edit', $value->id) }}"
+                                                                class="btn btn-outline-primary btn-xs"><i
+                                                                    class="fas fa-pencil-alt fa-xl"></i></a>
+
+                                                            <button type="submit"
+                                                                class="btn btn-outline-danger btn-xs swalSuccesDelete"><i
+                                                                    class="fas fa-trash fa-xl"></i></button>
+                                                        </form>
+                                                    </div>
                                                 </td>
                                             </tr>
                                         @endforeach

@@ -28,8 +28,7 @@
                                 <h3 class="card-title">Form Data</h3>
                             </div>
                             <div class="card-body">
-                                <form
-                                    action="{{ isset($role) ? route('role.update', $role->id) : route('role.store') }}"
+                                <form action="{{ isset($role) ? route('role.update', $role->id) : route('role.store') }}"
                                     method="POST">
                                     @csrf
                                     @method(isset($role) ? 'PUT' : 'POST')
@@ -38,8 +37,7 @@
                                         <label for="name"><strong><i class="fas fa-key"></i> Name</strong></label>
                                         <input type="text"
                                             class="form-control form-control-border @error('name') is-invalid @enderror"
-                                            id="name" name="name"
-                                            value="{{ isset($role) ? $role->name : old('name') }}">
+                                            id="name" name="name" value="{{ isset($role) ? $role->name : old('name') }}">
                                         @error('name')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -85,19 +83,21 @@
                                                 <td class="text-primary">{{ $value->id }} </td>
                                                 <td>{{ $value->name }}</td>
                                                 <td class="text-center">
-                                                    <form action="{{ route('role.destroy', $value->id) }}"
-                                                        method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
+                                                    <div class="btn-group">
+                                                        <form action="{{ route('role.destroy', $value->id) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
 
-                                                        <a href="{{ route('role.edit', $value->id) }}"
-                                                            class="btn btn-outline-primary btn-xs"><i
-                                                                class="fas fa-pencil-alt fa-xl"></i></a>
+                                                            <a href="{{ route('role.edit', $value->id) }}"
+                                                                class="btn btn-outline-primary btn-xs"><i
+                                                                    class="fas fa-pencil-alt fa-xl"></i></a>
 
-                                                        <button type="submit"
-                                                            class="btn btn-outline-danger btn-xs swalSuccesDelete"><i
-                                                                class="fas fa-trash fa-xl"></i></button>
-                                                    </form>
+                                                            <button type="submit"
+                                                                class="btn btn-outline-danger btn-xs swalSuccesDelete"><i
+                                                                    class="fas fa-trash fa-xl"></i></button>
+                                                        </form>
+                                                    </div>
                                                 </td>
                                             </tr>
                                         @endforeach

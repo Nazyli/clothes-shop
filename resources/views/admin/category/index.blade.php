@@ -11,7 +11,8 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ url('/admin/home') }}">Home</a></li>
-                            <li class="breadcrumb-item active"><a href="{{ url('/admin/category') }}">Master Category</a></li>
+                            <li class="breadcrumb-item active"><a href="{{ url('/admin/category') }}">Master Category</a>
+                            </li>
                         </ol>
                     </div>
                 </div>
@@ -27,7 +28,8 @@
                                 <h3 class="card-title">Form Data</h3>
                             </div>
                             <div class="card-body">
-                                <form action="{{ isset($category) ? route('category.update', $category->id) : route('category.store') }}"
+                                <form
+                                    action="{{ isset($category) ? route('category.update', $category->id) : route('category.store') }}"
                                     method="POST">
                                     @csrf
                                     @method(isset($category) ? 'PUT' : 'POST')
@@ -47,7 +49,8 @@
                                     </div>
                                     <button class="btn btn-primary btn-block"><b>Save</b></button>
                                     @isset($category)
-                                        <a href="{{ url('admin/category') }}" class="btn btn-secondary btn-block"><b>Cancel</b></a>
+                                        <a href="{{ url('admin/category') }}"
+                                            class="btn btn-secondary btn-block"><b>Cancel</b></a>
                                     @endisset
                                 </form>
                             </div>
@@ -82,18 +85,21 @@
                                                 <td class="text-primary">{{ $value->id }} </td>
                                                 <td>{{ $value->name }}</td>
                                                 <td class="text-center">
-                                                    <form action="{{ route('category.destroy', $value->id) }}" method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
+                                                    <div class="btn-group">
+                                                        <form action="{{ route('category.destroy', $value->id) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
 
-                                                        <a href="{{ route('category.edit', $value->id) }}"
-                                                            class="btn btn-outline-primary btn-xs"><i
-                                                                class="fas fa-pencil-alt fa-xl"></i></a>
+                                                            <a href="{{ route('category.edit', $value->id) }}"
+                                                                class="btn btn-outline-primary btn-xs"><i
+                                                                    class="fas fa-pencil-alt fa-xl"></i></a>
 
-                                                        <button type="submit"
-                                                            class="btn btn-outline-danger btn-xs swalSuccesDelete"><i
-                                                                class="fas fa-trash fa-xl"></i></button>
-                                                    </form>
+                                                            <button type="submit"
+                                                                class="btn btn-outline-danger btn-xs swalSuccesDelete"><i
+                                                                    class="fas fa-trash fa-xl"></i></button>
+                                                        </form>
+                                                    </div>
                                                 </td>
                                             </tr>
                                         @endforeach
