@@ -1,0 +1,26 @@
+version: "3.7"
+services:
+  app:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: rpl03
+    container_name: rpl03-app
+    restart: unless-stopped
+    ports:
+      - "8081:8081"
+    working_dir: /var/www/rpl03
+    volumes:
+      - ./:/var/www/rpl03
+    networks:
+      - rpl03
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - |
+        mv /lara_vendor /var/www/rpl03/vendor
+        php artisan key:generate
+        php artisan serve --host=0.0.0.0 --port=8081
+
+networks:
+  rpl03:
+    driver: bridge
