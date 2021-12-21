@@ -260,6 +260,7 @@
     <script src="{{ asset('js/adminlte.min.js') }}"></script>
     <script src="{{ asset('js/demo.js') }}"></script>
     <script src="{{ asset('js/style-admin.js') }}"></script>
+    @yield('js')
     <script>
         @if (session('success'))
             $(document).ready(showNotif('success', '{{ session('success') }}'));

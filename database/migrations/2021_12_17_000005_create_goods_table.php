@@ -21,7 +21,7 @@ class CreateGoodsTable extends Migration
             $table->foreign('category_id')->references('id')->on('master_categories');
             $table->boolean("is_active");
             $table->float("base_price");
-            $table->integer("total_qty");
+            $table->integer("total_qty")->default(0);
             $table->timestamps();
         });
     }
