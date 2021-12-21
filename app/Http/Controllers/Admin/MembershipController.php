@@ -152,7 +152,9 @@ class MembershipController extends Controller
     {
         //
         TransUserAuthLog::where('user_id', $id)->delete();
-        User::find($id)->delete();
+        $user = User::find($id)->delete();
+        File::delete($user->img_url);
+        $user->delete();
         return redirect()->route('user.index')->with('success', 'User deleted successfully.');
     }
 }

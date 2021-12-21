@@ -67,7 +67,7 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <label for="goods_name"><strong>Nama Product</strong></label>
+                                        <label for="goods_name"><strong>Product Name</strong></label>
                                         <input type="text"
                                             class="form-control form-control-border @error('goods_name') is-invalid @enderror"
                                             id="goods_name" name="goods_name" value="{{ old('goods_name') }}">
@@ -90,59 +90,57 @@
                                         @enderror
                                     </div>
 
-                                    
 
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="exampleInputBorder"><strong>Category</strong></label>
-                                                    <select
-                                                        class="custom-select form-control-border @error('category_id') is-invalid @enderror"
-                                                        name="category_id">
-                                                        <option disabled selected value></option>
-                                                        @foreach ($category as $key => $value)
-                                                            <option value="{{ $value->id }}"
-                                                                {{ old('category_id') == $value->id ? 'selected' : '' }}>
-                                                                {{ $value->name }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                    @error('category_id')
-                                                        <span class="invalid-feedback" role="alert">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
-                                                </div>
-                                            </div>
 
-                                            <div class="col-md-6 align-items-center">
-                                                <div class="custom-control custom-radio">
-                                                    <input class="custom-control-input" type="radio" id="is_active1"
-                                                        name="is_active" value="0">
-                                                    <label for="is_active1" class="custom-control-label">Non-Active</label>
-                                                </div>
-                                                <div class="custom-control custom-radio">
-                                                    <input class="custom-control-input" type="radio" id="is_active2"
-                                                        name="is_active" value="1" checked>
-                                                    <label for="is_active2" class="custom-control-label">Is Active</label>
-                                                </div>
+                                    <div class="row align-items-center">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputBorder"><strong>Category</strong></label>
+                                                <select
+                                                    class="custom-select form-control-border @error('category_id') is-invalid @enderror"
+                                                    name="category_id">
+                                                    <option disabled selected value></option>
+                                                    @foreach ($category as $key => $value)
+                                                        <option value="{{ $value->id }}"
+                                                            {{ old('category_id') == $value->id ? 'selected' : '' }}>
+                                                            {{ $value->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                                @error('category_id')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
-                                            
                                         </div>
 
-                                        <div class="form-group">
-                                            <label for="base_price"><strong>Price</strong></label>
-                                            <input type="text"
-                                                class="form-control form-control-border @error('base_price') is-invalid @enderror"
-                                                id="base_price" name="base_price" value="{{ old('base_price') }}">
-                                            @error('base_price')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
+                                        <div class="col-md-6 align-items-center">
+                                            <div class="custom-control custom-radio">
+                                                <input class="custom-control-input" type="radio" id="is_active1"
+                                                    name="is_active" value="0">
+                                                <label for="is_active1" class="custom-control-label">Non-Active</label>
+                                            </div>
+                                            <div class="custom-control custom-radio">
+                                                <input class="custom-control-input" type="radio" id="is_active2"
+                                                    name="is_active" value="1" checked>
+                                                <label for="is_active2" class="custom-control-label">Is Active</label>
+                                            </div>
                                         </div>
 
                                     </div>
+
+                                    <div class="form-group">
+                                        <label for="base_price"><strong>Price</strong></label>
+                                        <input type="text"
+                                            class="form-control form-control-border @error('base_price') is-invalid @enderror"
+                                            id="base_price" name="base_price" value="{{ old('base_price') }}">
+                                        @error('base_price')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+
                                 </div>
                             </div>
                         </div>

@@ -2,11 +2,13 @@
 
 use App\Http\Controllers\Admin\MasterCategoryController;
 use App\Http\Controllers\Admin\MasterFaqController;
+use App\Http\Controllers\Admin\MasterFileController;
 use App\Http\Controllers\Admin\MasterGoodsController;
 use App\Http\Controllers\Admin\MasterPaymentController;
 use App\Http\Controllers\Admin\MasterRoleController;
 use App\Http\Controllers\Admin\MembershipController;
 use App\Http\Controllers\HomeController;
+use App\Models\MasterFileUpload;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -43,4 +45,5 @@ Route::group(['namespace' => '', 'prefix' => 'admin',  'middleware' => ['auth', 
     Route::resource('role', MasterRoleController::class);
     Route::resource('user', MembershipController::class);
     Route::resource('goods', MasterGoodsController::class);
+    Route::resource('files', MasterFileController::class);
 });

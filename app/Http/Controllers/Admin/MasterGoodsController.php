@@ -104,7 +104,7 @@ class MasterGoodsController extends Controller
                     $goodsSize->save();
                 }
             }
-            
+
             Goods::where("id", $goodsId)->update(array('total_qty' => $total_qty));
             DB::commit();
             return redirect()->route('goods.index')->with('success', 'New Product created successfully.');
@@ -124,7 +124,8 @@ class MasterGoodsController extends Controller
     {
         //
         $goods = Goods::find($id);
-        return view('admin.goods.show', compact('goods'));
+        $category = MasterCategory::all();
+        return view('admin.goods.show')->with(compact('goods'))->with(compact('category'));
     }
 
     /**
@@ -145,9 +146,21 @@ class MasterGoodsController extends Controller
      * @param  \App\Models\Goods  $goods
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Goods $goods)
+    public function update(Request $request, $id)
     {
         //
+        $goods = Goods::find($id);
+
+
+        $goods->update([
+            'goods_name' => $request->goods_name,
+            'description' => $request->description,
+            'category_id' => $request->category_id,
+            'is_active' => $request->is_active,
+            'base_price' => $request->base_price,
+            'total_qty' => GoodsSize::totalQty($id),
+        ]);
+        return response()->json(['success' => true]);
     }
 
     /**

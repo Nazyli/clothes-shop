@@ -125,9 +125,10 @@ class DatabaseSeeder extends Seeder
                             "goods_color_id" => $idColor,
                             "size" => $size[$k],
                             "additional_price" => $faker->numberBetween(1000, 5000),
-                            "qty" => $faker->numberBetween(1,5),
+                            "qty" => $faker->numberBetween(1, 5),
                         ]);
                     }
+                    Goods::where("id", $id)->update(array('total_qty' => GoodsSize::totalQty($id)));
                 }
 
                 // image

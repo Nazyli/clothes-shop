@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class GoodsSize extends Model
 {
@@ -14,4 +15,12 @@ class GoodsSize extends Model
         'additional_price',
         'qty',
     ];
+
+    public static function totalQty($id)
+    {
+        return DB::table('goods_sizes')
+            ->join('goods_colors', 'goods_sizes.goods_color_id', '=', 'goods_colors.id')
+            ->where('goods_colors.goods_id', '=', $id)
+            ->sum('goods_sizes.qty');
+    }
 }
