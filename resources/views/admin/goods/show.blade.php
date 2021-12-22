@@ -207,9 +207,10 @@
                                                             @csrf
                                                             @method('DELETE')
 
-                                                            <a href="{{ route('goods.edit', $value->id) }}"
+                                                            <button type="button" id="addSize"
+                                                                data-value="{{ $color->id }}"
                                                                 class="btn btn-outline-primary btn-xs"><i
-                                                                    class="fas fa-plus fa-sm"></i></a>
+                                                                    class="fas fa-plus fa-sm"></i></button>
                                                             <button type="submit"
                                                                 class="btn btn-outline-danger btn-xs swalSuccesDelete"><i
                                                                     class="fas fa-times fa-sm"></i></button>
@@ -262,34 +263,7 @@
                                                                     </td>
                                                                 </tr>
                                                             @endforeach
-                                                            <tr id="addSize">
-                                                                <td>
-                                                                    <a href="#" class="insert-size"
-                                                                        data-name="goods_color_id"
-                                                                        style="display: none;">{{ $color->id }}
-                                                                    </a>
-                                                                    <a href="#" class="insert-size" data-name="size">
-                                                                    </a>
-                                                                </td>
-                                                                <td class="text-center">
-                                                                    <a href="#" class="insert-size"
-                                                                        data-name="additional_price">
-                                                                    </a>
-                                                                </td>
-                                                                <td class="text-center">
-                                                                    <a href="#" class="insert-size" data-name="qty">
-                                                                    </a>
-                                                                </td>
-                                                                <td class="text-right">
-                                                                    <button type="submit"
-                                                                        class="btn btn-outline-primary btn-xs save-btn"><i
-                                                                            class="fas fa-paper-plane fa-sm"></i></button>
-                                                                    <button
-                                                                        class="btn btn-outline-secondary btn-xs reset-btn"
-                                                                        onclick="javascript:removeElement('addSize'); return false;"><i
-                                                                            class="fas fa-times fa-sm"></i></button>
-                                                                </td>
-                                                            </tr>
+                                                            <tr class="addSize-{{ $color->id }}"></tr>
                                                         </tbody>
                                                     </table>
                                                 </div>
@@ -375,38 +349,67 @@
                     window.location.reload(true);
                 }
             });
-            $('.insert-size').editable({
-                mode: 'inline',
-                tpl: "<input type='text' class ='form-control form-control-xs' style='width: 80px;height: 22px; padding: 2px 5px; font-size: 12px; line-height: 1.5;  border-radius: 3px;'>",
-                showbuttons: false,
-                url: '/post'
-            });
 
-            $('.save-btn').click(function() {
-                $('.insert-size').editable('submit', {
-                    url: "{{ route('goods.size-update') }}",
-                    ajaxOptions: {
-                        dataType: 'json'
-                    },
-                    success: function(response, newValue) {
-                        console.log(response);
-                        $(document).ready(showNotif('success', response.success));
-                        window.location.reload(true);
-                    },
-                    error: function(errors) {
-                        $(document).ready(showNotif('error', errors.responseJSON.error));
-                    }
+
+            let addSizeHtmlId = 1;
+            $("button#addSize").on("click", function() {
+                addSizeHtmlId++;
+                let id = $(this).data("value");
+                let addSizeHtml = `<tr id="addSize-${addSizeHtmlId}">
+                <td>
+                    <a href="#" class="insert-size-${id}"
+                        data-name="goods_color_id"
+                        style="display: none;">${id}
+                    </a>
+                    <a href="#" class="insert-size-${id}" data-name="size">
+                    </a>
+                </td>
+                <td class="text-center">
+                    <a href="#" class="insert-size-${id}"
+                        data-name="additional_price">
+                    </a>
+                </td>
+                <td class="text-center">
+                    <a href="#" class="insert-size-${id}" data-name="qty">
+                    </a>
+                </td>
+                <td class="text-right">
+                    <button type="submit"
+                        class="btn btn-outline-primary btn-xs save-btn-${id}"><i
+                            class="fas fa-paper-plane fa-sm"></i></button>
+                    <button
+                        class="btn btn-outline-secondary btn-xs reset-btn"
+                        onclick="javascript:removeElement('addSize-${addSizeHtmlId}'); return false;"><i
+                            class="fas fa-times fa-sm"></i></button>
+                </td>
+            </tr>`;
+                $(".addSize-" + id + ":last").after(addSizeHtml);
+
+                $(".insert-size-" + id).editable({
+                    mode: 'inline',
+                    tpl: "<input type='text' class ='form-control form-control-xs' style='width: 80px;height: 22px; padding: 2px 5px; font-size: 12px; line-height: 1.5;  border-radius: 3px;'>",
+                    showbuttons: false,
+                    url: '/post'
+                });
+
+                $(".save-btn-" + id).click(function() {
+                    $(".insert-size-" + id).editable('submit', {
+                        url: "{{ route('goods.size-update') }}",
+                        ajaxOptions: {
+                            dataType: 'json'
+                        },
+                        success: function(response, newValue) {
+                            console.log(response);
+                            $(document).ready(showNotif('success', response.success));
+                            window.location.reload(true);
+                        },
+                        error: function(errors) {
+                            $(document).ready(showNotif('error', errors.responseJSON
+                                .error));
+                        }
+                    });
                 });
             });
-
-            $('.reset-btn').click(function() {
-                $('.insert-size').editable('setValue', null) //clear values
-                    .editable('option', 'pk', null) //clear pk
-                    .removeClass('editable-unsaved'); //remove bold css
-
-                $('.save-btn').show();
-            });
-
         });
 
 
