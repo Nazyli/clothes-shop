@@ -182,6 +182,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="row">
+                                    <div class="card-color"></div>
                                     @foreach ($goods->goodsColors as $key => $color)
                                         <div class="col-md-4 col-sm-6 card-color">
                                             <div class="card">
@@ -202,7 +203,7 @@
                                                     </h3>
 
                                                     <div class="card-tools">
-                                                        <form action="{{ route('goods.destroy', $value->id) }}"
+                                                        <form action="{{ route('goods.deletecolor', $color->id) }}"
                                                             method="POST">
                                                             @csrf
                                                             @method('DELETE')
@@ -250,7 +251,7 @@
                                                                     <td class="text-right">
                                                                         <div class="btn-group">
                                                                             <form
-                                                                                action="{{ route('goods.destroy', $value->id) }}"
+                                                                                action="{{ route('goods.deletesize', $size->id) }}"
                                                                                 method="POST">
                                                                                 @csrf
                                                                                 @method('DELETE')

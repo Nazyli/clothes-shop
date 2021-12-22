@@ -11,6 +11,7 @@ use App\Models\MasterFileUpload;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 
 class MasterGoodsController extends Controller
 {
@@ -195,7 +196,7 @@ class MasterGoodsController extends Controller
             return redirect()->route('goods.show', $goodsId)->with('error', 'Failed to created new color');
         }
     }
-    
+
     function colorUpdate(Request $request)
     {
         DB::beginTransaction();
@@ -251,8 +252,59 @@ class MasterGoodsController extends Controller
      * @param  \App\Models\Goods  $goods
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Goods $goods)
+    public function destroy($id)
     {
         //
+        DB::beginTransaction();
+        try {
+            $goods = Goods::find($id);
+            $goodsColor = GoodsColor::where('goods_id', $id)->get();
+            foreach ($goodsColor as $color) {
+                GoodsSize::where('goods_color_id', $color->id)->delete();
+                $color->delete();
+            }
+            $fileUpload = MasterFileUpload::where('goods_id', $id)->get();
+            foreach ($fileUpload as $f) {
+                File::delete($f->url_path);
+                $f->delete();
+            }
+            $goods->delete();
+            DB::commit();
+            return redirect()->route('goods.index')->with('success', 'Goods deleted successfully.');
+        } catch (Exception $e) {
+            DB::rollback();
+            dd($e);
+            return redirect()->route('goods.index')->with('error', $e->errorInfo[2]);
+        }
+    }
+
+    public function destroyColor($id)
+    {
+        //
+        $goodsColor = GoodsColor::find($id);
+        $goodsId = $goodsColor->goods_id;
+
+        DB::beginTransaction();
+        try {
+            GoodsSize::where('goods_color_id', $id)->delete();
+            $goodsColor->delete();
+
+            Goods::where("id", $goodsId)->update(array('total_qty' => GoodsSize::totalQty($goodsId)));
+            DB::commit();
+            return redirect()->route('goods.show', $goodsId)->with('success', 'Color deleted successfully.');
+        } catch (Exception $e) {
+            DB::rollback();
+            return redirect()->route('goods.show', $goodsId)->with('error', $e->errorInfo[2]);
+        }
+    }
+
+    public function destroySize($id)
+    {
+        //
+        $goodSize = GoodsSize::find($id);
+        $goodsId = GoodsColor::find($goodSize->goods_color_id)->goods_id;
+        $goodSize->delete();
+        Goods::where("id", $goodsId)->update(array('total_qty' => GoodsSize::totalQty($goodsId)));
+        return redirect()->route('goods.show', $goodsId)->with('success', 'Size deleted successfully.');
     }
 }

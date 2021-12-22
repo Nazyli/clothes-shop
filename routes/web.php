@@ -48,5 +48,7 @@ Route::group(['namespace' => '', 'prefix' => 'admin',  'middleware' => ['auth', 
     Route::post('goods/size', [MasterGoodsController::class, 'sizeUpdate'])->name('goods.size-update');
     Route::post('goods/color', [MasterGoodsController::class, 'colorUpdate'])->name('goods.color-update');
     Route::post('goods/addcolor', [MasterGoodsController::class, 'addColor'])->name('goods.addcolor');
+    Route::delete('goods/color/{id}', [MasterGoodsController::class, 'destroyColor'])->name('goods.deletecolor');
+    Route::delete('goods/size/{id}', [MasterGoodsController::class, 'destroySize'])->name('goods.deletesize');
     Route::resource('files', MasterFileController::class);
 });
