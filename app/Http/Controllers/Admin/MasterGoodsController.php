@@ -163,6 +163,39 @@ class MasterGoodsController extends Controller
         return response()->json(['success' => true]);
     }
 
+    function addColor(Request $request)
+    {
+        $goodsId = $request->goods_id;
+
+        DB::beginTransaction();
+        try {
+            foreach (($request->color) as $value) {
+                $goodsColor = new GoodsColor();
+                $goodsColor->goods_id = $goodsId;
+                $goodsColor->color = $value['colorName'];
+                $goodsColor->additional_price = $value['colorPrice'];
+                $goodsColor->save();
+
+                // add size by color
+                $idColor = $goodsColor->id;
+                foreach ($value['size']['sizeName'] as $key => $sizeName) {
+                    $goodsSize = new GoodsSize();
+                    $goodsSize->goods_color_id = $idColor;
+                    $goodsSize->size = $sizeName;
+                    $goodsSize->additional_price = $value['size']['priceSize'][$key];
+                    $goodsSize->qty = $value['size']['qty'][$key];
+                    $goodsSize->save();
+                }
+            }
+            Goods::where("id", $goodsId)->update(array('total_qty' => GoodsSize::totalQty($goodsId)));
+            DB::commit();
+            return redirect()->route('goods.show', $goodsId)->with('success', 'New color created successfully.');
+        } catch (Exception $e) {
+            DB::rollback();
+            return redirect()->route('goods.show', $goodsId)->with('error', 'Failed to created new color');
+        }
+    }
+    
     function colorUpdate(Request $request)
     {
         DB::beginTransaction();

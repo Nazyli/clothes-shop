@@ -168,8 +168,8 @@
                             <div class="card-header">
                                 <h3 class="card-title">Color - {{ $goods->goods_name }}</h3>
                                 <div class="card-tools">
-                                    <a href="{{ route('goods.create') }}" class="btn btn-outline-info btn-xs"><b> Add
-                                            Color </b></a>
+                                    <button type="button" class="btn btn-outline-info btn-xs" id="addCardColor"><b> Add
+                                            Color </b></button>
 
                                     <button type="button" class="btn btn-tool" data-card-widget="collapse"
                                         title="Collapse">
@@ -183,7 +183,7 @@
                             <div class="card-body">
                                 <div class="row">
                                     @foreach ($goods->goodsColors as $key => $color)
-                                        <div class="col-md-4 col-sm-6">
+                                        <div class="col-md-4 col-sm-6 card-color">
                                             <div class="card">
                                                 <div class="card-header">
                                                     <h3 class="card-title"><b>
@@ -285,7 +285,8 @@
                                                                         class="btn btn-outline-primary btn-xs save-btn"><i
                                                                             class="fas fa-paper-plane fa-sm"></i></button>
                                                                     <button
-                                                                        class="btn btn-outline-secondary btn-xs reset-btn" onclick="javascript:removeElement('addSize'); return false;"><i
+                                                                        class="btn btn-outline-secondary btn-xs reset-btn"
+                                                                        onclick="javascript:removeElement('addSize'); return false;"><i
                                                                             class="fas fa-times fa-sm"></i></button>
                                                                 </td>
                                                             </tr>
@@ -406,6 +407,80 @@
                 $('.save-btn').show();
             });
 
+        });
+
+
+        var colorId = 1;
+        var sizeId = 1;
+        $("button#addCardColor").on("click", function() {
+            colorId++;
+            let addCardColor = `
+            
+        <div class="col-md-4 col-sm-6 card-color" id="card-color-rm-${colorId}">
+            <form action="{{ route('goods.addcolor') }}" method="POST">
+                @csrf
+                <input type="hidden" name="goods_id" value="{{ $goods->id }}">
+            <div class="card">
+                <div class="card-body p-1">
+                    <div class="form-group input-group input-group-sm card-header p-1">
+                        <input type="text" class="form-control" placeholder="Color Name" name="color[${colorId}][colorName]">
+                        <input type="text" class="form-control"
+                            placeholder="Additional Price" name="color[${colorId}][colorPrice]">
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-danger btn-flat"
+                                onclick="javascript:removeElement('card-color-rm-${colorId}'); return false;"><i
+                                    class="fas fa-times"></i></button>
+                        </span>
+                    </div>
+                    <table class="table table-striped table-sm mt-1">
+                        <thead>
+                            <tr>
+                                <th class="align-middle">Size</th>
+                                <th class="align-middle text-center">Rp.</th>
+                                <th class="align-middle text-center">Qty</th>
+                                <th class="align-middle text-right">
+                                    <a class="text-primary" id="addSizeProduct-${colorId}"" data-value="${colorId}"> <i
+                                            class="fas fa-plus"></i> </a>
+                                </th>
+                            </tr>
+                        <tbody>
+                            <tr class="table-color-${colorId}"></tr>
+                        </tbody>
+                    </table>
+
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-outline-primary btn-xs float-right">Save</button>
+                      </div>
+                </div>
+            </div>
+        </form>
+        </div>`;
+            $(".card-color:last").after(addCardColor);
+
+            $('a#addSizeProduct-' + colorId).on('click', function(e) {
+                let id = $(this).data("value");
+                sizeId++;
+                let addSize = `<tr class="table-color-${id}" id="table-size-rm-${sizeId}">
+                    <td class="text-left"><input type="text"
+                            class="form-control form-control-sm"
+                            placeholder="Size" name="color[${id}][size][sizeName][]"></td>
+                    <td class="text-center">
+                        <input type="text" class="form-control form-control-sm"
+                            placeholder="Add Price" name="color[${id}][size][priceSize][]">
+                    </td>
+                    <td class="text-center">
+                        <input type="text" class="form-control form-control-sm"
+                            placeholder="Qty" name="color[${id}][size][qty][]">
+                    </td>
+                    <td class="align-middle text-center">
+                        <a class="text-danger"
+                            onclick="javascript:removeElement('table-size-rm-${sizeId}'); return false;">
+                            <i class="fas fa-times">
+                            </i></a>
+                    </td>
+                </tr>`;
+                $(".table-color-" + id + ":last").after(addSize);
+            });
         });
     </script>
 @endsection
