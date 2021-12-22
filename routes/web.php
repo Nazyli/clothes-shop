@@ -45,5 +45,7 @@ Route::group(['namespace' => '', 'prefix' => 'admin',  'middleware' => ['auth', 
     Route::resource('role', MasterRoleController::class);
     Route::resource('user', MembershipController::class);
     Route::resource('goods', MasterGoodsController::class);
+    Route::post('goods/size', [MasterGoodsController::class, 'sizeUpdate'])->name('goods.size-update');
+    Route::post('goods/color', [MasterGoodsController::class, 'colorUpdate'])->name('goods.color-update');
     Route::resource('files', MasterFileController::class);
 });

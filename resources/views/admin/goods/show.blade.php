@@ -1,4 +1,7 @@
 @extends('admin.layouts.app')
+@section('css')
+    <link rel="stylesheet" href="{{ asset('vendor/bootstrap-editable/css/bootstrap-editable.css') }}">
+@endsection()
 
 @section('content')
     <div class="content-wrapper">
@@ -27,7 +30,8 @@
                             <div class="card-header">
                                 <h3 class="card-title">Product Picture</h3>
                                 <div class="card-tools">
-                                    <a href="{{ route('files.show', $goods->id) }}" class="btn btn-info btn-xs"><b> Add Foto </b>
+                                    <a href="{{ route('files.show', $goods->id) }}" class="btn btn-info btn-xs"><b> Add
+                                            Foto </b>
                                     </a>
 
                                     <button type="button" class="btn btn-tool" data-card-widget="collapse"
@@ -89,7 +93,6 @@
                         </div>
                     </div>
                 </div>
-
 
                 {{-- Modal Edit Product --}}
                 <div class="modal fade" id="editProductModal">
@@ -183,11 +186,19 @@
                                         <div class="col-md-4 col-sm-6">
                                             <div class="card">
                                                 <div class="card-header">
-                                                    <h3 class="card-title"><b>{{ $color->color }}</b>
-                                                        &nbsp;&nbsp;&nbsp;
-                                                        <span class="badge bg-primary">
-                                                            + @currency($color->additional_price)
-                                                        </span>
+                                                    <h3 class="card-title"><b>
+                                                            <a href="#" class="xcolor"
+                                                                data-pk="{{ $color->id }}" data-name="color">
+                                                                {{ $color->color }}</a>
+                                                        </b>
+                                                        &nbsp; / &nbsp;
+                                                        <a href="#" class="xcolor" data-pk="{{ $color->id }}"
+                                                            data-name="additional_price"
+                                                            data-value="{{ $color->additional_price }}">
+                                                            <span class="badge bg-primary">
+                                                                + @currency($color->additional_price)
+                                                            </span>
+                                                        </a>
                                                     </h3>
 
                                                     <div class="card-tools">
@@ -198,10 +209,10 @@
 
                                                             <a href="{{ route('goods.edit', $value->id) }}"
                                                                 class="btn btn-outline-primary btn-xs"><i
-                                                                    class="fas fa-pencil-alt fa-xl"></i></a>
+                                                                    class="fas fa-plus fa-sm"></i></a>
                                                             <button type="submit"
                                                                 class="btn btn-outline-danger btn-xs swalSuccesDelete"><i
-                                                                    class="fas fa-trash fa-xl"></i></button>
+                                                                    class="fas fa-times fa-sm"></i></button>
                                                         </form>
                                                     </div>
                                                 </div>
@@ -213,18 +224,27 @@
                                                                 <th>Size</th>
                                                                 <th class="text-center">Rp.</th>
                                                                 <th class="text-center">Qty</th>
-                                                                <th class="text-right">Action</th>
+                                                                <th></th>
                                                             </tr>
                                                         <tbody>
                                                             @foreach ($color->goodsSizes as $key => $size)
                                                                 <tr>
-                                                                    <td class="text-left">{{ $size->size }}</td>
+                                                                    <td><a href="#" class="xsize"
+                                                                            data-pk="{{ $size->id }}" data-name="size">
+                                                                            {{ $size->size }}</a></td>
                                                                     <td class="text-center">
-                                                                        <span class="badge bg-primary float-right">+
-                                                                            @currency($size->additional_price)</span>
+                                                                        <a href="#" class="xsize"
+                                                                            data-pk="{{ $size->id }}"
+                                                                            data-name="additional_price"
+                                                                            data-value="{{ $size->additional_price }}">
+                                                                            <span class="badge bg-primary float-right">+
+                                                                                @currency($size->additional_price)</span></span>
+                                                                        </a>
                                                                     </td>
                                                                     <td class="text-center">
-                                                                        {{ $size->qty }}
+                                                                        <a href="#" class="xsize"
+                                                                            data-pk="{{ $size->id }}" data-name="qty">
+                                                                            {{ $size->qty }}</a>
                                                                     </td>
                                                                     <td class="text-right">
                                                                         <div class="btn-group">
@@ -234,20 +254,41 @@
                                                                                 @csrf
                                                                                 @method('DELETE')
 
-                                                                                <a href="{{ route('goods.edit', $value->id) }}"
-                                                                                    class="btn btn-outline-primary btn-xs"><i
-                                                                                        class="fas fa-pencil-alt fa-xl"></i></a>
-
-
                                                                                 <button type="submit"
                                                                                     class="btn btn-outline-danger btn-xs swalSuccesDelete"><i
-                                                                                        class="fas fa-trash fa-xl"></i></button>
+                                                                                        class="fas fa-times fa-sm"></i></button>
                                                                             </form>
                                                                         </div>
                                                                     </td>
                                                                 </tr>
                                                             @endforeach
-
+                                                            <tr id="addSize">
+                                                                <td>
+                                                                    <a href="#" class="insert-size"
+                                                                        data-name="goods_color_id"
+                                                                        style="display: none;">{{ $color->id }}
+                                                                    </a>
+                                                                    <a href="#" class="insert-size" data-name="size">
+                                                                    </a>
+                                                                </td>
+                                                                <td class="text-center">
+                                                                    <a href="#" class="insert-size"
+                                                                        data-name="additional_price">
+                                                                    </a>
+                                                                </td>
+                                                                <td class="text-center">
+                                                                    <a href="#" class="insert-size" data-name="qty">
+                                                                    </a>
+                                                                </td>
+                                                                <td class="text-right">
+                                                                    <button type="submit"
+                                                                        class="btn btn-outline-primary btn-xs save-btn"><i
+                                                                            class="fas fa-paper-plane fa-sm"></i></button>
+                                                                    <button
+                                                                        class="btn btn-outline-secondary btn-xs reset-btn" onclick="javascript:removeElement('addSize'); return false;"><i
+                                                                            class="fas fa-times fa-sm"></i></button>
+                                                                </td>
+                                                            </tr>
                                                         </tbody>
                                                     </table>
                                                 </div>
@@ -255,7 +296,6 @@
                                         </div>
                                     @endforeach
                                 </div>
-
 
                             </div>
                         </div>
@@ -267,14 +307,23 @@
     </div>
 @endsection
 @section('js')
+    <script src="{{ asset('vendor/bootstrap-editable/js/bootstrap-editable.js') }}"></script>
+
+
     <script>
+        function removeElement(elementId) {
+            var element = document.getElementById(elementId);
+            element.parentNode.removeChild(element);
+        };
+
         $(document).ready(function() {
 
             $.ajaxSetup({
                 headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
                 }
             });
+
 
             $('button#saveProduct').on('click', function(e) {
                 event.preventDefault()
@@ -300,6 +349,63 @@
                     }
                 });
             });
+
+
+            $('.xcolor').editable({
+                mode: 'inline',
+                tpl: "<input type='text' class ='form-control form-control-xs' style='width: 100px;height: 30px; padding: 2px 5px; font-size: 12px; line-height: 1.5;  border-radius: 3px;'>",
+                showbuttons: false,
+                url: "{{ route('goods.color-update') }}",
+                title: 'Update',
+                success: function(response, newValue) {
+                    $(document).ready(showNotif('success', response.success));
+                    window.location.reload(true);
+                }
+            });
+
+            $('.xsize').editable({
+                mode: 'inline',
+                tpl: "<input type='text' class ='form-control form-control-xs' style='width: 80px;height: 22px; padding: 2px 5px; font-size: 12px; line-height: 1.5;  border-radius: 3px;'>",
+                showbuttons: false,
+                url: "{{ route('goods.size-update') }}",
+                title: 'Update',
+                success: function(response, newValue) {
+                    $(document).ready(showNotif('success', response.success));
+                    window.location.reload(true);
+                }
+            });
+            $('.insert-size').editable({
+                mode: 'inline',
+                tpl: "<input type='text' class ='form-control form-control-xs' style='width: 80px;height: 22px; padding: 2px 5px; font-size: 12px; line-height: 1.5;  border-radius: 3px;'>",
+                showbuttons: false,
+                url: '/post'
+            });
+
+            $('.save-btn').click(function() {
+                $('.insert-size').editable('submit', {
+                    url: "{{ route('goods.size-update') }}",
+                    ajaxOptions: {
+                        dataType: 'json'
+                    },
+                    success: function(response, newValue) {
+                        console.log(response);
+                        $(document).ready(showNotif('success', response.success));
+                        window.location.reload(true);
+                    },
+                    error: function(errors) {
+                        $(document).ready(showNotif('error', errors.responseJSON.error));
+                    }
+                });
+            });
+
+            $('.reset-btn').click(function() {
+                $('.insert-size').editable('setValue', null) //clear values
+                    .editable('option', 'pk', null) //clear pk
+                    .removeClass('editable-unsaved'); //remove bold css
+
+                $('.save-btn').show();
+            });
+
         });
     </script>
 @endsection

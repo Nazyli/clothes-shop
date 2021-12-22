@@ -163,6 +163,55 @@ class MasterGoodsController extends Controller
         return response()->json(['success' => true]);
     }
 
+    function colorUpdate(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            if ($request->input('pk')) {
+                GoodsColor::find($request->input('pk'))->update(
+                    [$request->input('name') => $request->input('value')]
+                );
+                DB::commit();
+                return response()->json(['success' => 'Size updated successfully.']);
+            }
+        } catch (Exception $e) {
+            DB::rollback();
+            return response()->json(['error' => $e->errorInfo[2]], 500);
+        }
+    }
+
+    function sizeUpdate(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            $message = [];
+            $goodsColorId = 0;
+            if ($request->input('pk')) {
+                $goodSize = GoodsSize::find($request->input('pk'));
+                $goodSize->update(
+                    [$request->input('name') => $request->input('value')]
+                );
+                $goodsColorId = $goodSize->goods_color_id;
+                $message = ['success' => 'Size updated successfully.'];
+            } else {
+                $goodsSize = new GoodsSize();
+                $goodsSize->goods_color_id = $request->goods_color_id;
+                $goodsSize->size = $request->size;
+                $goodsSize->additional_price = $request->additional_price;
+                $goodsSize->qty = $request->qty;
+                $goodsSize->save();
+                $goodsColorId =  $request->goods_color_id;
+                $message = ['success' => 'Size created successfully.'];
+            }
+            $goodsId = GoodsColor::find($goodsColorId)->goods_id;
+            Goods::where("id", $goodsId)->update(array('total_qty' => GoodsSize::totalQty($goodsId)));
+            DB::commit();
+            return response()->json($message);
+        } catch (Exception $e) {
+            DB::rollback();
+            return response()->json(['error' => $e->errorInfo[2]], 500);
+        }
+    }
     /**
      * Remove the specified resource from storage.
      *
