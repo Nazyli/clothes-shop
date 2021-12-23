@@ -53,8 +53,11 @@ class LoginController extends Controller
 
         if (auth()->attempt(array('email' => $input['email'], 'password' => $input['password']))) {
             TransUserAuthLog::createLog("SIGNIN", "SUCCESS", $request, new Agent());
-            if (auth()->user()->role_id == 1) {
-                return redirect()->route('admin.home')->with('success', 'Selamat Datang Administrator');;
+            $user = auth()->user();
+            if ($user->role_id == 1) {
+                return redirect()->route('admin.home')->with('success', 'Selamat Datang Administrator');
+            } else if ($user->role_id == 2) {
+                return redirect()->route('user.home')->with('success', 'Selamat Datang '.$user->first_name.' '.$user->last_name);
             } else {
                 return redirect()->route('home');
             }

@@ -52,3 +52,7 @@ Route::group(['namespace' => '', 'prefix' => 'admin',  'middleware' => ['auth', 
     Route::delete('goods/size/{id}', [MasterGoodsController::class, 'destroySize'])->name('goods.deletesize');
     Route::resource('files', MasterFileController::class);
 });
+
+Route::group(['namespace' => '', 'prefix' => 'user',  'middleware' => ['auth', 'is_user']], function () {
+    Route::get('home', [HomeController::class, 'userHome'])->name('user.home');
+});
