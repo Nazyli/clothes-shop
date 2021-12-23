@@ -298,7 +298,7 @@
                                         <h5 class="dress-name">{{ $value->goods_name }}</h5>
                                     </div>
                                     <div class="col-6 d-flex flex-column align-items-end">
-                                        <span class="new-price">@currency($value->base_price)</span>
+                                        <span class="new-price">@currency($value->minPrice())</span>
                                         <span class="old-price">@currency($value->maxPrice())</small>
                                     </div>
 

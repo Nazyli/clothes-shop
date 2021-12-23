@@ -149,11 +149,11 @@
 
                 @foreach ($goods as $row)
                     <div class="col-lg-4 col-md-6 portfolio-item filter-{{ strtolower($row->category->name) }}">
-                        <img src="{{ $row->img_path ? asset($row->img_path) : asset('img/product/baju-1.png') }}" class="img-fluid" alt="">
+                        <img src="{{ $row->masterFileUpload()->pathImg() }}" class="img-fluid" alt="">
                         <div class="portfolio-info">
                             <h4>{{ $row->name }}</h4>
-                            <p>Rp. {{ number_format($row->base_price, 0, ',', '.') }}</p>
-                            <a href="{{ $row->img_path ? asset($row->img_path) : asset('img/product/baju-1.png') }}" data-gallery="portfolioGallery"
+                            <p>@currency($row->minPrice())</p>
+                            <a href="{{ $row->masterFileUpload()->pathImg() }}" data-gallery="portfolioGallery"
                                 class="portfolio-lightbox preview-link" title="{{ $row->name }}"><i class="bx bx-plus"></i></a>
                             <a href="portfolio-details.html" class="details-link" title="More Details"><i
                                     class="bx bx-link"></i></a>
@@ -164,7 +164,7 @@
             </div>
 
             <div class="text-center">
-                <a href="#about" class="btn-get-started scrollto">View All Collection</a>
+                <a href="{{ route('products') }}" class="btn-get-started scrollto">View All Collection</a>
             </div>
 
         </div>

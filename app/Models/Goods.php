@@ -65,4 +65,14 @@ class Goods extends Model
         ->where('goods.id', '=', $this->id)
         ->groupBy('goods.id')->first()->max_price;
     }
+
+    public function minPrice()
+    {
+        return DB::table('goods')
+        ->join('goods_colors', 'goods.id', '=', 'goods_colors.goods_id')
+        ->join('goods_sizes', 'goods_colors.id', '=', 'goods_sizes.goods_color_id')
+        ->select(DB::raw('MIN(goods.base_price) + MIN(goods_colors.additional_price) + MIN(goods_sizes.additional_price) as min_price'))
+        ->where('goods.id', '=', $this->id)
+        ->groupBy('goods.id')->first()->min_price;
+    }
 }
