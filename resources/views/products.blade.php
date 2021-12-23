@@ -59,8 +59,8 @@
                                 </div>
                                 <div class="d-flex justify-content-between p-2">
                                     <button href="{{ route('products.detail', $value->id)}}" type="button" class="btn btn-orange btn-sm" style="color:white">
-                                        <i class="fa fa-shopping-cart"></i>
-                                        Buy Now
+                                        <i class="fa fa-info"></i>
+                                        Details
                                     </button>
                                     <button class="btn btn-outline-orange btn-sm">
                                         <i class="fa fa-cart-plus"></i>

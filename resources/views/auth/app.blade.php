@@ -31,13 +31,13 @@
                                     <p>Based on paid invoices</p>
                                 </div>
                                 <div> <img src="https://img.icons8.com/clouds/200/000000/group.png" />
-                                    <h4>99% Customer Satisfaction</h4>
-                                    <p>Based on paid invoices</p>
+                                    <h4>100+ Regular customers</h4>
+                                    <p>Many people have recommended JOLA</p>
                                 </div>
                                 <div> <img
                                         src="https://img.icons8.com/bubbles/200/000000/lady-with-a-security-shield.png" />
-                                    <h4>99% Customer Satisfaction</h4>
-                                    <p>Based on paid invoices</p>
+                                    <h4>Guaranteed Safety</h4>
+                                    <p>User account has high security</p>
                                 </div>
                             </div>
                         </div>

@@ -3,10 +3,13 @@
 @section('content')
     <div class="p-4">
         <div class="text-right">
-            <img src="{{ asset('img/logo.png') }}" class="rounded">
+            <a href="{{ url('/') }}">
+                <img src="{{ asset('img/logo.png') }}" class="rounded">
+            </a>
         </div>
-        <div class="text-muted">Don&apos;t have an account? ? <a class="text-danger" href="{{ url('/register') }}">Sign Up</div>
-        <hr />
+        <div class="text-muted">Don&apos;t have an account? ? <a class="text-danger"
+                href="{{ url('/register') }}">Sign Up </a></div>
+        {{--  <hr />
         <div class="row">
             <div class="col-6">
                 <a class="btn btn-block btn-sm btn-social btn-twitter text-white">
@@ -18,14 +21,14 @@
                     <span class="fa fa-google"></span> Sign in with Google
                 </a>
             </div>
-        </div>
+        </div>  --}}
         <h6 class="separator my-4">or</h6>
         <form method="POST" action="{{ route('login') }}">
             @csrf
 
             <input id="email" type="email" placeholder="Email"
                 class="form-control mb-3 @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}"
-             autocomplete="email" autofocus>
+                autocomplete="email" autofocus>
 
             @error('email')
                 <span class="invalid-feedback" role="alert">

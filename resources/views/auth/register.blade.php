@@ -3,11 +3,13 @@
 @section('content')
     <div class="p-4">
         <div class="text-right">
-            <img src="{{ asset('img/logo.png') }}" class="rounded">
+            <a href="{{ url('/') }}">
+                <img src="{{ asset('img/logo.png') }}" class="rounded">
+            </a>
         </div>
-        <div class="text-muted">Already have an account? <a class="text-danger" href="{{ url('/login') }}">Sign In
+        <div class="text-muted">Already have an account? <a class="text-danger" href="{{ url('/login') }}">Sign In </a>
         </div>
-        <hr />
+        {{--  <hr />
         <div class="row">
             <div class="col-6">
                 <a class="btn btn-block btn-sm btn-social btn-twitter text-white">
@@ -19,7 +21,7 @@
                     <span class="fa fa-google"></span> Sign in with Google
                 </a>
             </div>
-        </div>
+        </div>  --}}
         <h6 class="separator my-4">or</h6>
         <form method="POST" action="{{ route('register') }}">
             @csrf

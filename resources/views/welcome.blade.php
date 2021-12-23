@@ -254,7 +254,7 @@
 
                     <div class="swiper-slide">
                         <div class="testimonial-item">
-                            <img src="{{ asset('img/testimonials/diny.jepg') }}" class="testimonial-img"
+                            <img src="{{ asset('img/testimonials/diny.jpeg') }}" class="testimonial-img"
                                 alt="">
                             <h3>Diny Brilianti</h3>
                             <h4>Quality Assurance</h4>

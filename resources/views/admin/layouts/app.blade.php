@@ -57,7 +57,7 @@
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <div class="float-left">
-                                <a href="admin/profile" class="btn btn-primary btn-sm">Profile</a>
+                                <a href="{{ url('admin/profile') }}" class="btn btn-primary btn-sm">Profile</a>
                             </div>
                             <div class="float-right">
                                 <a href="{{ route('logout') }}" onclick="event.preventDefault();
@@ -86,7 +86,7 @@
             </ul>
         </nav>
         <aside class="main-sidebar main-sidebar-custom sidebar-light-primary elevation-4">
-            <a href="" class="brand-link text-sm navbar-orange">
+            <a href="{{ url('/') }}" class="brand-link text-sm navbar-orange">
                 <img src="{{ asset('img/shop.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
                     style="opacity: .8">
                 <span class="brand-text font-weight-light text-light">J O L A</span>
