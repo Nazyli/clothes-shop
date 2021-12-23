@@ -74,39 +74,44 @@ class MasterGoodsController extends Controller
             $no = 1;
             $time = time();
             if ($files = $request->file('foto')) {
+                $publicPath = "product";
                 foreach ($files as $file) {
                     $imageName =  $time . '-' . $no++ . '.' . $file->extension();
-                    $file->move(public_path() . '/product/', $imageName);
+                    $file->move($publicPath, $imageName);
                     $images[] = [
                         'goods_id' => $goodsId,
-                        'url_path' =>  'product/' . $imageName
+                        'url_path' =>  $publicPath . "/" . $imageName
                     ];
                 }
             }
             MasterFileUpload::insert($images);
 
-            $total_qty = 0;
-            foreach (($request->color) as $value) {
-                $goodsColor = new GoodsColor();
-                $goodsColor->goods_id = $goodsId;
-                $goodsColor->color = $value['colorName'];
-                $goodsColor->additional_price = $value['colorPrice'];
-                $goodsColor->save();
+            if ($request->color) {
+                $total_qty = 0;
 
-                // add size by color
-                $idColor = $goodsColor->id;
-                foreach ($value['size']['sizeName'] as $key => $sizeName) {
-                    $goodsSize = new GoodsSize();
-                    $goodsSize->goods_color_id = $idColor;
-                    $goodsSize->size = $sizeName;
-                    $goodsSize->additional_price = $value['size']['priceSize'][$key];
-                    $goodsSize->qty = $value['size']['qty'][$key];
-                    $total_qty += $goodsSize->qty;
-                    $goodsSize->save();
+                foreach (($request->color) as $value) {
+                    $goodsColor = new GoodsColor();
+                    $goodsColor->goods_id = $goodsId;
+                    $goodsColor->color = $value['colorName'];
+                    $goodsColor->additional_price = $value['colorPrice'];
+                    $goodsColor->save();
+
+                    // add size by color
+                    $idColor = $goodsColor->id;
+                    foreach ($value['size']['sizeName'] as $key => $sizeName) {
+                        $goodsSize = new GoodsSize();
+                        $goodsSize->goods_color_id = $idColor;
+                        $goodsSize->size = $sizeName;
+                        $goodsSize->additional_price = $value['size']['priceSize'][$key];
+                        $goodsSize->qty = $value['size']['qty'][$key];
+                        $total_qty += $goodsSize->qty;
+                        $goodsSize->save();
+                    }
                 }
+
+                Goods::where("id", $goodsId)->update(array('total_qty' => $total_qty));
             }
 
-            Goods::where("id", $goodsId)->update(array('total_qty' => $total_qty));
             DB::commit();
             return redirect()->route('goods.index')->with('success', 'New Product created successfully.');
         } catch (Exception $e) {

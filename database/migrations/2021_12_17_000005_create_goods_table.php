@@ -16,7 +16,7 @@ class CreateGoodsTable extends Migration
         Schema::create('goods', function (Blueprint $table) {
             $table->id();
             $table->string("goods_name");
-            $table->string("description");
+            $table->text("description");
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('master_categories');
             $table->boolean("is_active");

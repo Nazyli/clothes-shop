@@ -88,7 +88,7 @@
                                     @if (!isset($user))
                                         <div class="form-group">
                                             <label for="password"><strong>Password</strong></label>
-                                            <input type="text"
+                                            <input type="password"
                                                 class="form-control form-control-border @error('password') is-invalid @enderror"
                                                 id="password" name="password" value="{{ old('password') }}">
                                             @error('password')

@@ -42,12 +42,13 @@ class MasterFileController extends Controller
         $this->validate($request, [
             'url_path' => ['required', 'mimes:png,jpg,jpeg'],
         ]);
+        $publicPath = "product";
         $file = $request->file('url_path');
         $imageName =  time() . '-0.' . $file->extension();
-        $file->move(public_path() . '/product/', $imageName);
+        $file->move($publicPath, $imageName);
         MasterFileUpload::create([
             'goods_id' => $request->goods_id,
-            'url_path' =>  'product/' . $imageName
+            'url_path' =>  $publicPath . "/" . $imageName
         ]);
 
         return redirect()->route('files.show', $request->goods_id)->with('success', 'Product Picture upload successfully.');
