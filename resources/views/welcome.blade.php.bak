@@ -122,28 +122,113 @@
                     <div class="col-lg-12 d-flex justify-content-center">
                         <ul id="portfolio-flters">
                             <li data-filter="*" class="filter-active">All</li>
-                            @foreach ($categorys as $row)
-                                <li data-filter=".filter-{{ strtolower($row->name) }}">{{ $row->name }}</li>
-                            @endforeach
+                            <li data-filter=".filter-jaket">Jaket</li>
+                            <li data-filter=".filter-sweater">Sweater</li>
+                            <li data-filter=".filter-baju">Baju</li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
 
-                    @foreach ($goods as $row)
-                        <div class="col-lg-4 col-md-6 portfolio-item filter-{{ strtolower($row->category->name) }}">
-                            <img src="{{ $row->img_path ? asset($row->img_path) : asset('img/product/baju-1.png') }}" class="img-fluid" alt="">
-                            <div class="portfolio-info">
-                                <h4>{{ $row->name }}</h4>
-                                <p>Rp. {{ number_format($row->base_price, 0, ',', '.') }}</p>
-                                <a href="{{ $row->img_path ? asset($row->img_path) : asset('img/product/baju-1.png') }}" data-gallery="portfolioGallery"
-                                    class="portfolio-lightbox preview-link" title="{{ $row->name }}"><i class="bx bx-plus"></i></a>
-                                <a href="portfolio-details.html" class="details-link" title="More Details"><i
-                                        class="bx bx-link"></i></a>
-                            </div>
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-jaket">
+                        <img src="{{ asset('img/product/jaket-1.png') }}" class="img-fluid" alt="">
+                        <div class="portfolio-info">
+                            <h4>Jaket 1</h4>
+                            <p>Rp. 270.000</p>
+                            <a href="img/product/jaket-1.png') }}" data-gallery="portfolioGallery"
+                                class="portfolio-lightbox preview-link" title="Jaket 1"><i class="bx bx-plus"></i></a>
+                            <a href="portfolio-details.html" class="details-link" title="More Details"><i
+                                    class="bx bx-link"></i></a>
                         </div>
-                    @endforeach
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-baju">
+                        <img src="{{ asset('img/product/baju-1.png') }}" class="img-fluid" alt="">
+                        <div class="portfolio-info">
+                            <h4>Baju 1</h4>
+                            <p>Rp. 190.000</p>
+                            <a href="img/product/baju-1.png') }}" data-gallery="portfolioGallery"
+                                class="portfolio-lightbox preview-link" title="Baju 1"><i class="bx bx-plus"></i></a>
+                            <a href="portfolio-details.html" class="details-link" title="More Details"><i
+                                    class="bx bx-link"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-jaket">
+                        <img src="{{ asset('img/product/jaket-2.png') }}" class="img-fluid" alt="">
+                        <div class="portfolio-info">
+                            <h4>Jaket 2</h4>
+                            <p>Rp. 270.000</p>
+                            <a href="img/product/jaket-2.png') }}" data-gallery="portfolioGallery"
+                                class="portfolio-lightbox preview-link" title="Jaket 2"><i class="bx bx-plus"></i></a>
+                            <a href="portfolio-details.html" class="details-link" title="More Details"><i
+                                    class="bx bx-link"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-sweater">
+                        <img src="{{ asset('img/product/sweater-1.png') }}" class="img-fluid" alt="">
+                        <div class="portfolio-info">
+                            <h4>Sweater 1</h4>
+                            <p>Rp. 270.000</p>
+                            <a href="img/product/sweater-1.png') }}" data-gallery="portfolioGallery"
+                                class="portfolio-lightbox preview-link" title="Sweater 1"><i class="bx bx-plus"></i></a>
+                            <a href="portfolio-details.html" class="details-link" title="More Details"><i
+                                    class="bx bx-link"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-sweater">
+                        <img src="{{ asset('img/product/sweater-3.png') }}" class="img-fluid" alt="">
+                        <div class="portfolio-info">
+                            <h4>Sweater 3</h4>
+                            <p>Rp. 270.000</p>
+                            <a href="img/product/sweater-3.png') }}" data-gallery="portfolioGallery"
+                                class="portfolio-lightbox preview-link" title="Jaket 3"><i class="bx bx-plus"></i></a>
+                            <a href="portfolio-details.html" class="details-link" title="More Details"><i
+                                    class="bx bx-link"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-jaket">
+                        <img src="{{ asset('img/product/jaket-4.png') }}" class="img-fluid" alt="">
+                        <div class="portfolio-info">
+                            <h4>Jaket 4</h4>
+                            <p>Rp. 270.000</p>
+                            <a href="img/product/jaket-4.png') }}" data-gallery="portfolioGallery"
+                                class="portfolio-lightbox preview-link" title="Jaket 4"><i class="bx bx-plus"></i></a>
+                            <a href="portfolio-details.html" class="details-link" title="More Details"><i
+                                    class="bx bx-link"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-jaket">
+                        <img src="{{ asset('img/product/jaket-5.png') }}" class="img-fluid" alt="">
+                        <div class="portfolio-info">
+                            <h4>Jaket 5</h4>
+                            <p>Rp. 270.000</p>
+                            <a href="img/product/jaket-5.png') }}" data-gallery="portfolioGallery"
+                                class="portfolio-lightbox preview-link" title="Jaket 5"><i class="bx bx-plus"></i></a>
+                            <a href="portfolio-details.html" class="details-link" title="More Details"><i
+                                    class="bx bx-link"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-sweater">
+                        <img src="{{ asset('img/product/sweater-2.png') }}" class="img-fluid" alt="">
+                        <div class="portfolio-info">
+                            <h4>Sweater 2</h4>
+                            <p>Rp. 270.000</p>
+                            <a href="img/product/sweater-2.png') }}" data-gallery="portfolioGallery"
+                                class="portfolio-lightbox preview-link" title="Sweater 2"><i
+                                    class="bx bx-plus"></i></a>
+                            <a href="portfolio-details.html" class="details-link" title="More Details"><i
+                                    class="bx bx-link"></i></a>
+                        </div>
+                    </div>
+
+
 
                 </div>
 

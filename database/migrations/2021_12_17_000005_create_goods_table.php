@@ -17,6 +17,7 @@ class CreateGoodsTable extends Migration
             $table->id();
             $table->string("goods_name");
             $table->text("description");
+            $table->text("img_path");
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('master_categories');
             $table->boolean("is_active");

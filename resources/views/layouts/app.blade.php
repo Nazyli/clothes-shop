@@ -50,7 +50,15 @@
                         <li class="dropdown"><a href="#"><span>
                                     {{ Auth::user()->first_name }}</span> <i class="bi bi-chevron-right"></i></a>
                             <ul>
-                                <li><a href="#">Profile</a></li>
+                                <li>
+                                    @if (auth()->user()->role_id == 1)
+                                        <a href="{{ url('admin/profile') }}">Profile</a>
+                                    @elseif (auth()->user()->role_id == 2)
+                                        <a href="{{ url('user/profile') }}">Profile</a>
+                                    @else
+                                        <a href="#">Profile</a>
+                                    @endif
+                                </li>
                                 <li>
                                     <a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                               document.getElementById('logout-form').submit();">
