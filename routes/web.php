@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\MasterPaymentController;
 use App\Http\Controllers\Admin\MasterRoleController;
 use App\Http\Controllers\Admin\MembershipController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProductsController;
 use App\Models\MasterFileUpload;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -37,6 +38,8 @@ Route::get('admin/home', [HomeController::class, 'adminHome'])->name('admin.home
 Route::get('/admin/sample', function () {
     return view('admin.sample');
 });
+
+Route::get('/products',[ProductsController::class, 'index'])->name('products');
 
 Route::group(['namespace' => '', 'prefix' => 'admin',  'middleware' => ['auth', 'is_admin']], function () {
     Route::resource('faq', MasterFaqController::class);

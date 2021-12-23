@@ -58,7 +58,7 @@
                                                     {{ $value->id }}
                                                 </td>
                                                 <td>{{ $value->goods_name }}</td>
-                                                <td>{{ $value->descriptionLimit() }}</td>
+                                                <td>{{ $value->descriptionLimit(25) }}</td>
                                                 <td class="text-center">
                                                     <span
                                                         class="badge {{ $value->is_active ? 'badge-primary' : 'badge-secondary' }}">{{ $value->status() }}</span>

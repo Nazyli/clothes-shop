@@ -22,6 +22,7 @@
     <link href="{{ asset('vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
     <link href="{{ asset('vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
     <link href="{{ asset('vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
+    @yield('css')
     <link href="{{ asset('css/style-user.css') }}" rel="stylesheet">
 
 </head>
@@ -37,7 +38,7 @@
                     <li><a class="nav-link scrollto active" href="{{ url('/') }}">Home</a></li>
                     <li><a class="nav-link scrollto" href="#promo">Promo</a></li>
                     <li><a class="nav-link scrollto" href="#collection">Collection</a></li>
-                    <li><a class="nav-link scrollto" href="#product">Catalog</a></li>
+                    <li><a class="nav-link scrollto" href="{{ route('products') }}">Catalog</a></li>
                     <li><a class="nav-link scrollto " href="{{ url('/faq#faq') }}">FAQ</a></li>
                     <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
                     <li><a class="nav-link scrollto" href="#team">Shop</a></li>
@@ -70,24 +71,6 @@
                 </nav>
             </div>
         </header>
-
-        <section id="hero" class="d-flex align-items-center">
-            <div class="container" data-aos="zoom-out" data-aos-delay="100">
-                <div class="row align-items-center">
-                    <div class="col-md-6">
-                        <img src="{{ asset('img/hero.png') }}" class="img-fluid center-block d-block mx-auto"
-                            style="max-width: 400px; " />
-                    </div>
-                    <div class="col-md-6">
-                        <h1>LETS CREATE YOUR OWN STYLE</h1>
-                        <h2>Fashion is life-enhancing and we always bring out the stars in yourself</h2>
-                        <div class="d-flex">
-                            <a href="#about" class="btn-get-started scrollto">SHOP NOW</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
         <main id="main">
             @yield('content')
@@ -160,8 +143,8 @@
         <script src="{{ asset('vendor/swiper/swiper-bundle.min.js') }}"></script>
         <script src="{{ asset('vendor/waypoints/noframework.waypoints.js') }}"></script>
         <script src="{{ asset('vendor/php-email-form/validate.js') }}"></script>
-
         <script src="{{ asset('js/main-user.js') }}"></script>
+        @yield('js')
 
     </body>
 
