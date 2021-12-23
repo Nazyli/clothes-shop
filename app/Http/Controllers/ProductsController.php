@@ -15,4 +15,11 @@ class ProductsController extends Controller
         $goods = Goods::where('is_active', Goods::IS_ACTIVE_YES)->paginate(12);
         return view('products', compact('goods'));
     }
+
+    public function show($id)
+    {
+        //
+        $goods = Goods::find($id);
+        return view('products-detail')->with(compact('goods'));
+    }
 }

@@ -75,4 +75,12 @@ class Goods extends Model
         ->where('goods.id', '=', $this->id)
         ->groupBy('goods.id')->first()->min_price;
     }
+
+    public function getReadySize(){
+        return GoodsSize::select('size')->join('goods_colors', 'goods_colors.id', '=', 'goods_sizes.goods_color_id')
+            ->groupBy('goods_sizes.size')
+            ->where('goods_colors.goods_id', '=', $this->id)
+            ->orderBy('goods_sizes.id', 'asc')
+            ->get();
+    }
 }

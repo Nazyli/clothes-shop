@@ -38,6 +38,7 @@ Route::get('/admin/sample', function () {
 });
 
 Route::get('/products',[ProductsController::class, 'index'])->name('products');
+Route::get('/products/show/{id}',[ProductsController::class, 'show'])->name('products.detail');
 
 Route::group(['namespace' => '', 'prefix' => 'admin',  'middleware' => ['auth', 'is_admin']], function () {
     Route::resource('faq', MasterFaqController::class);

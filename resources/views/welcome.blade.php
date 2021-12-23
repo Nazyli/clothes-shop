@@ -85,9 +85,7 @@
             <div class="section-title">
                 <h2>Services</h2>
                 <h3>Check our <span>Services</span></h3>
-                <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas
-                    atque vitae
-                    autem.</p>
+                <p>Find Your Favorite Clothes Here!</p>
             </div>
 
             <div class="row">
@@ -129,9 +127,7 @@
             <div class="section-title">
                 <h2>Products</h2>
                 <h3>Best Seller <span>Products</span></h3>
-                <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas
-                    atque vitae
-                    autem.</p>
+                <p>Enjoy your vacation in amazing clothes and great comfort at an affordable price</p>
             </div>
 
             <div class="row" data-aos="fade-up" data-aos-delay="100">
@@ -154,9 +150,10 @@
                             <h4>{{ $row->name }}</h4>
                             <p>@currency($row->minPrice())</p>
                             <a href="{{ $row->masterFileUpload()->pathImg() }}" data-gallery="portfolioGallery"
-                                class="portfolio-lightbox preview-link" title="{{ $row->name }}"><i class="bx bx-plus"></i></a>
-                            <a href="portfolio-details.html" class="details-link" title="More Details"><i
-                                    class="bx bx-link"></i></a>
+                                class="portfolio-lightbox preview-link" title="{{ $row->name }}"><i
+                                    class="bx bx-plus"></i></a>
+                            <a href="{{ route('products.detail', $row->id) }}" class="details-link"
+                                title="More Details"><i class="bx bx-link"></i></a>
                         </div>
                     </div>
                 @endforeach
@@ -178,85 +175,96 @@
 
                     <div class="swiper-slide">
                         <div class="testimonial-item">
-                            <img src="{{ asset('img/testimonials/testimonials-1.jpg') }}" class="testimonial-img"
-                                alt="">
-                            <h3>Saul Goodman</h3>
+                            <img src="{{ asset('img/testimonials/evry.jpg') }}" class="testimonial-img" alt="">
+                            <h3>Evry Nazyli Ciptanto</h3>
                             <h4>Ceo &amp; Founder</h4>
                             <p>
                                 <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                                Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit
-                                rhoncus. Accusantium
-                                quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
+                                Everything was perfect and exactly what we wanted on this website
                                 <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                             </p>
                         </div>
-                    </div><!-- End testimonial item -->
+                    </div>
 
                     <div class="swiper-slide">
                         <div class="testimonial-item">
-                            <img src="{{ asset('img/testimonials/testimonials-2.jpg') }}" class="testimonial-img"
-                                alt="">
-                            <h3>Sara Wilsson</h3>
+                            <img src="{{ asset('img/testimonials/raga.jpeg') }}" class="testimonial-img" alt="">
+                            <h3>Raga Murtadha Muthahari</h3>
                             <h4>Designer</h4>
                             <p>
                                 <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                                Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid
-                                cillum eram malis
-                                quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.
+                                Love your goods good quality year after year and I tell everyone to shop at jola
                                 <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                             </p>
                         </div>
-                    </div><!-- End testimonial item -->
+                    </div>
 
                     <div class="swiper-slide">
                         <div class="testimonial-item">
-                            <img src="{{ asset('img/testimonials/testimonials-3.jpg') }}" class="testimonial-img"
-                                alt="">
-                            <h3>Jena Karlis</h3>
+                            <img src="{{ asset('img/testimonials/rafif.jpeg') }}" class="testimonial-img" alt="">
+                            <h3>Rafif Mulia Reswara</h3>
+                            <h4>Development</h4>
+                            <p>
+                                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                                Super soft t-shirts at such a great price, i&apos;d have to pay 2 or 3 times more at jola
+                                for this quality
+                                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="testimonial-item">
+                            <img src="{{ asset('img/testimonials/alfi.jpeg') }}" class="testimonial-img" alt="">
+                            <h3>Alfi Syahri</h3>
                             <h4>Store Owner</h4>
                             <p>
                                 <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                                Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem
-                                veniam duis minim
-                                tempor labore quem eram duis noster aute amet eram fore quis sint minim.
+                                Amazing service from start to finish i had a fabulous experience shopping in jola
                                 <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                             </p>
                         </div>
-                    </div><!-- End testimonial item -->
+                    </div>
 
                     <div class="swiper-slide">
                         <div class="testimonial-item">
-                            <img src="{{ asset('img/testimonials/testimonials-4.jpg') }}" class="testimonial-img"
-                                alt="">
-                            <h3>Matt Brandon</h3>
+                            <img src="{{ asset('img/testimonials/ali.jpeg') }}" class="testimonial-img" alt="">
+                            <h3>Ali Mahmud</h3>
                             <h4>Freelancer</h4>
                             <p>
                                 <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                                Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim
-                                fugiat minim velit
-                                minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore
-                                illum veniam.
+                                Clothing products at Jola are very good and of good quality, i very proud for jola
                                 <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                             </p>
                         </div>
-                    </div><!-- End testimonial item -->
+                    </div>
 
                     <div class="swiper-slide">
                         <div class="testimonial-item">
-                            <img src="{{ asset('img/testimonials/testimonials-5.jpg') }}" class="testimonial-img"
-                                alt="">
-                            <h3>John Larson</h3>
+                            <img src="{{ asset('img/testimonials/farid.jpeg') }}" class="testimonial-img" alt="">
+                            <h3>Farid Muhari</h3>
                             <h4>Entrepreneur</h4>
                             <p>
                                 <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                                Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster
-                                veniam enim culpa
-                                labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi
-                                cillum quid.
+                                I like shopping at JOLA because the website is very easy for customers to understand
                                 <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                             </p>
                         </div>
-                    </div><!-- End testimonial item -->
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="testimonial-item">
+                            <img src="{{ asset('img/testimonials/diny.jepg') }}" class="testimonial-img"
+                                alt="">
+                            <h3>Diny Brilianti</h3>
+                            <h4>Quality Assurance</h4>
+                            <p>
+                                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                                Very fast response & helpful service, jola is best recommend
+                                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                            </p>
+                        </div>
+                    </div>
 
                 </div>
                 <div class="swiper-pagination"></div>
@@ -271,9 +279,7 @@
             <div class="section-title">
                 <h2>Latest Brand</h2>
                 <h3>Popular <span>Brand</span></h3>
-                <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas
-                    atque vitae
-                    autem.</p>
+                <p>Our products are also available from several well-known brands</p>
             </div>
 
             <div class="row">
