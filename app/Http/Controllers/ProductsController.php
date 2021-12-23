@@ -12,7 +12,7 @@ class ProductsController extends Controller
     public function index()
     {
         //
-        $goods = Goods::paginate(12);
+        $goods = Goods::where('is_active', Goods::IS_ACTIVE_YES)->paginate(12);
         return view('products', compact('goods'));
     }
 }

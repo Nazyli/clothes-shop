@@ -35,13 +35,14 @@
 
             <nav id="navbar" class="navbar">
                 <ul>
-                    <li><a class="nav-link scrollto active" href="{{ url('/') }}">Home</a></li>
-                    <li><a class="nav-link scrollto" href="#promo">Promo</a></li>
-                    <li><a class="nav-link scrollto" href="#collection">Collection</a></li>
+                    <li><a class="nav-link scrollto active" href="{{ url('/#hero') }}">Home</a></li>
+                    <li><a class="nav-link scrollto" href="{{ url('/#promo') }}">Promo</a></li>
+                    <li><a class="nav-link scrollto" href="{{ url('/#collection') }}">Collection</a></li>
+                    <li><a class="nav-link scrollto" href="{{ url('/#testimonials') }}">Testimonials</a></li>
+                    <li><a class="nav-link scrollto" href="{{ url('/#clients') }}">Brand</a></li>
                     <li><a class="nav-link scrollto" href="{{ route('products') }}">Catalog</a></li>
                     <li><a class="nav-link scrollto " href="{{ url('/faq#faq') }}">FAQ</a></li>
                     <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-                    <li><a class="nav-link scrollto" href="#team">Shop</a></li>
                     @guest
                         <li><a href="{{ route('login') }}">Login</a></li>
                         @if (Route::has('login'))
