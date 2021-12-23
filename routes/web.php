@@ -7,8 +7,10 @@ use App\Http\Controllers\Admin\MasterGoodsController;
 use App\Http\Controllers\Admin\MasterPaymentController;
 use App\Http\Controllers\Admin\MasterRoleController;
 use App\Http\Controllers\Admin\MembershipController;
+use App\Http\Controllers\Admin\AccountController as AdminAccountController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\User\AccountController;
 use App\Models\MasterFileUpload;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -52,8 +54,10 @@ Route::group(['namespace' => '', 'prefix' => 'admin',  'middleware' => ['auth', 
     Route::delete('goods/color/{id}', [MasterGoodsController::class, 'destroyColor'])->name('goods.deletecolor');
     Route::delete('goods/size/{id}', [MasterGoodsController::class, 'destroySize'])->name('goods.deletesize');
     Route::resource('files', MasterFileController::class);
+    Route::get('profile', [AdminAccountController::class, 'profile'])->name('admin.profile');
 });
 
 Route::group(['namespace' => '', 'prefix' => 'user',  'middleware' => ['auth', 'is_user']], function () {
     Route::get('home', [HomeController::class, 'userHome'])->name('user.home');
+    Route::get('profile', [AccountController::class, 'profile'])->name('user.profile');
 });

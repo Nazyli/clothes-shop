@@ -105,22 +105,11 @@ class DatabaseSeeder extends Seeder
             $categoryArray = json_decode(json_encode($category), true);
             for ($i = 0; $i < 100; $i++) {
                 $cat_id = (int)$faker->randomElement(collect($categoryArray)->flatten());
-                $img_goods = null;
-                if ($cat_id == $masterCategory[1]['id']) {
-                    $img_goods = 'img/product/baju-1.png';
-                } else if ($cat_id == $masterCategory[2]['id']) {
-                    $img_goods = 'img/product/jaket-2.png';
-                } else if ($cat_id == $masterCategory[3]['id']) {
-                    $img_goods = 'img/product/sweater-1.png';
-                } else {
-                    $img_goods = 'img/product/baju-1.png';
-                }
                 $id = Goods::insertGetId([
                     "goods_name" => $faker->productName,
                     "description" => $faker->text,
                     "category_id" => $cat_id,
                     "is_active" => true,
-                    "img_path" => $img_goods,
                     "base_price" => $faker->numberBetween(50000, 250000),
                     "total_qty" => $faker->numberBetween(5, 20),
                 ]);
