@@ -85,7 +85,7 @@
             </ul>
         </nav>
         <aside class="main-sidebar main-sidebar-custom sidebar-light-primary elevation-4">
-            <a href="" class="brand-link text-sm navbar-orange">
+            <a href="{{ url('/') }}" class="brand-link text-sm navbar-orange">
                 <img src="{{ asset('img/shop.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
                     style="opacity: .8">
                 <span class="brand-text font-weight-light text-light">J O L A</span>
@@ -97,7 +97,7 @@
                         <img src="{{ asset('user/default.png') }}" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="{{ route('user.home') }}" class="d-block">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</a>
+                        <a href="{{ url('user/home') }}" class="d-block">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</a>
                     </div>
                 </div>
 

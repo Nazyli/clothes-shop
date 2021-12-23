@@ -18,6 +18,9 @@ class Goods extends Model
         'total_qty'
     ];
 
+    const IS_ACTIVE_YES = 1;
+    const IS_ACTIVE_NO = 0;
+
     public function category()
     {
         return $this->belongsTo(MasterCategory::class);
