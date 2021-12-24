@@ -52,7 +52,7 @@
                                             class="form-control form-control-border @error('last_name') is-invalid @enderror"
                                             id="last_name" name="last_name"
                                             value="{{ isset($user) ? $user->last_name : old('last_name') }}">
-                                        @error('first_name')
+                                        @error('last_name')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>

@@ -112,11 +112,39 @@
                                 </p>
                             </a>
                         </li>
+                        
+                        <li class="nav-item">
+                            <a href="{{ url('user/trx') }}" class="nav-link">
+                                <i class="nav-icon fas fa-cart-arrow-down"></i>
+                                <p>
+                                    Cart
+                                </p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="{{ url('user/trx') }}" class="nav-link">
+                                <i class="nav-icon fas fa-clock"></i>
+                                <p>
+                                    Pending Transaction
+                                </p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="{{ url('user/trx') }}" class="nav-link">
+                                <i class="nav-icon fas fa-spinner"></i>
+                                <p>
+                                    Waiting Confirmation
+                                </p>
+                            </a>
+                        </li>
+
                         <li class="nav-item">
                             <a href="{{ url('user/trx') }}" class="nav-link">
                                 <i class="nav-icon fas fa-receipt"></i>
                                 <p>
-                                    List Transaksi
+                                    Success Transaction
                                 </p>
                             </a>
                         </li>
@@ -127,6 +155,14 @@
                                 <i class="nav-icon fas fa-user"></i>
                                 <p>
                                     My Profile
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('address.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-address-book"></i>
+                                <p>
+                                    My Address
                                 </p>
                             </a>
                         </li>

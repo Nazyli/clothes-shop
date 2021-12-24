@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\AccountController as AdminAccountController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\User\AccountController;
+use App\Http\Controllers\User\AddressController;
 use App\Http\Controllers\User\TransactionController;
 use App\Models\MasterFileUpload;
 use Illuminate\Support\Facades\Auth;
@@ -61,4 +62,5 @@ Route::group(['namespace' => '', 'prefix' => 'user',  'middleware' => ['auth', '
     Route::get('profile', [AccountController::class, 'profile'])->name('user.profile');
     Route::post('transaction', [TransactionController::class, 'reqBuy'])->name('transaction.req-buy');
     Route::get('confirm/{id}', [TransactionController::class, 'confirm'])->name('transaction.confirm');
+    Route::resource('address', AddressController::class);
 });
