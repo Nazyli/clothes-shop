@@ -60,4 +60,5 @@ Route::group(['namespace' => '', 'prefix' => 'user',  'middleware' => ['auth', '
     Route::get('home', [HomeController::class, 'userHome'])->name('user.home');
     Route::get('profile', [AccountController::class, 'profile'])->name('user.profile');
     Route::post('transaction', [TransactionController::class, 'reqBuy'])->name('transaction.req-buy');
+    Route::get('confirm/{id}', [TransactionController::class, 'confirm'])->name('transaction.confirm');
 });

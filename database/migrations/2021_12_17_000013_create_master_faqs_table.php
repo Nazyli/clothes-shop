@@ -16,7 +16,7 @@ class CreateMasterFaqsTable extends Migration
         Schema::create('master_faqs', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('body');
+            $table->text('body');
             $table->timestamps();
         });
     }

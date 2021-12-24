@@ -18,7 +18,7 @@ class CreateGoodsSizesTable extends Migration
             $table->unsignedBigInteger('goods_color_id');
             $table->foreign('goods_color_id')->references('id')->on('goods_colors');
             $table->string("size");
-            $table->float("additional_price");
+            $table->float("additional_price", 12, 2);
             $table->integer("qty");
             $table->timestamps();
         });

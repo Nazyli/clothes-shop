@@ -21,11 +21,11 @@ class CreateOrdersDetailsTable extends Migration
             $table->foreign('goods_id')->references('id')->on('goods');
             $table->string('goods_name');
             $table->string('color');
-            $table->float('additional_color_price');
+            $table->float('additional_color_price', 12, 2);
             $table->string('size');
-            $table->float('additional_size_price');
+            $table->float('additional_size_price', 12, 2);
             $table->integer('qty');
-            $table->float('total_price');
+            $table->float('total_price', 12, 2);
             $table->timestamps();
         });
     }

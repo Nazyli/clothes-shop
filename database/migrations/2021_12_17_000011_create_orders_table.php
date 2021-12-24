@@ -29,7 +29,7 @@ class CreateOrdersTable extends Migration
             $table->boolean('is_confirm')->nullable();
             $table->unsignedBigInteger('confirm_by')->nullable();
             $table->foreign('confirm_by')->references('id')->on('users');
-            $table->integer('total_price')->nullable();
+            $table->float('total_price', 12, 2)->nullable();
             $table->integer('total_qty')->nullable();
             $table->unsignedBigInteger('payments_id')->nullable();
             $table->foreign('payments_id')->references('id')->on('payment_methods');

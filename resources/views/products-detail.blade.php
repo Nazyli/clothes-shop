@@ -53,9 +53,9 @@
                         </div>
                     </div>
                     <div class="col-lg-4">
-                        <form action="{{ route('transaction.req-buy') }}"
-                            method="POST">
+                        <form action="{{ route('transaction.req-buy') }}" method="POST">
                             @csrf
+                            <input type="hidden" name="goods_id" value="{{ $goods->id }}">
 
                             <div class="portfolio-info row">
                                 <h3>{{ $goods->goods_name }}</h3>
@@ -83,7 +83,7 @@
                                                 <input class="form-check-input" name="color" style="display: none;"
                                                     data-id="{{ $color->id }}" data-base-price={{ $goods->base_price }}
                                                     data-additional-price={{ $color->additional_price }} type="radio"
-                                                    value="{{ $color->id }}" id="color-{{ $color->id }}" required>
+                                                    value="{{ $color->id }}" id="color-{{ $color->id }}">
                                                 <label
                                                     class="form-check-label btn btn-outline-orange btn-sm col-sm item-size"
                                                     for="color-{{ $color->id }}">
@@ -93,6 +93,12 @@
                                         @endforeach
 
                                     </div>
+                                    @error('color')
+                                        <div class="d-flex justify-content-center text-danger" style="font-size: 12px"
+                                            role="alert">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                     <div class="col-12 mt-2">
                                         <strong>Size :</strong>
                                         <div class="product-detail-container p-2">
@@ -113,18 +119,42 @@
                                             </div>
                                         </div>
                                     </div>
+                                    @error('size')
+                                        <div class="d-flex justify-content-center text-danger" style="font-size: 12px"
+                                            role="alert">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
 
                                     <div class="col-12 mt-2 d-flex justify-content-between form-row align-items-center">
                                         <strong class="col-auto">Atur jumlah</strong>
                                         <div class="col-auto my-1" id="input-stok">
-                                            <input type="number" class="form-control form-control-sm" name="quantity"
-                                                min="1" max="5" disabled>
+                                            <input type="number" class="form-control form-control-sm " style="width:80px;"
+                                                name="quantity" min="1" max="5" disabled>
                                         </div>
                                         <div class="col-auto portfolio-description my-1">
                                             <p id="stok">Stok :
                                                 {{ App\Models\GoodsSize::totalQty($goods->id) }}</p>
                                         </div>
+
+
                                     </div>
+                                    @error('quantity')
+                                        <div class="d-flex justify-content-center text-danger" style="font-size: 12px"
+                                            role="alert">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+
+                                    <hr style="border:1px solid #f0932b;">
+
+                                    <div class="d-flex justify-content-between">
+                                        <h4>Total</h4>
+                                        <h4 id="total_product" style="color:#ff9f43; font-weight:bold;">
+                                            -
+                                        </h4>
+                                    </div>
+
                                     <div class="d-flex justify-content-between mt-3">
                                         <button class="btn btn-orange btn-sm" name="buy" style="color:white">
                                             <i class="fa fa-shopping-cart"></i>
@@ -142,12 +172,10 @@
                 </div>
             </div>
     </section>
-
 @endsection
 @section('js')
     <script>
         $('input[name="color"]').on('click', function() {
-            console.log($('input[name="color"]:checked').val());
             let color = $(this).val();
             let base_price = $(this).data("base-price");
             let additional_price = $(this).data("additional-price");
@@ -155,6 +183,7 @@
 
             let price_product = base_price + additional_price;
             document.getElementById('price_product').innerHTML = formatRupiah(price_product);
+            document.getElementById('total_product').innerHTML = "-";
 
             let url = "{{ route('size.bycolor', ':id') }}";
             url = url.replace(':id', id);
@@ -184,22 +213,33 @@
                         let id = $(this).data("id");
 
                         let price_product = price + additional_price;
-                        document.getElementById('price_product').innerHTML = formatRupiah(
-                            price_product);
-                        document.getElementById('stok').innerHTML =
-                            `<p id="stok">Stok : ${qty}</p>`;
+                        document.getElementById('price_product').innerHTML = formatRupiah(price_product);
+                        document.getElementById('stok').innerHTML = `<p id="stok">Stok : ${qty}</p>`;
+                        document.getElementById('total_product').innerHTML = "-";
+
                         $('#input-stok').empty();
                         $('#input-stok').append(`
-                        <div class="col-auto my-1" id="input-stok">
-                            <input type="number" class="form-control form-control-sm" name="quantity"
-                                min="1" max="${qty}">
-                        </div>`);
+                            <div class="col-auto my-1" id="input-stok">
+                                <input type="number" class="form-control form-control-sm" style="width:80px;" name="quantity"
+                                    min="1" max="${qty}">
+                            </div>`);
+                        $('#input-stok').append(
+                            `<input type="hidden" name="total_price" value="${price_product}">`
+                        );
 
-                    })
+
+                        $('input[name="quantity"]').change(function() {
+                            let qty = $(this).val();
+                            document.getElementById('total_product').innerHTML =
+                                formatRupiah(qty * price_product);
+                        });
+
+                    });
                 }
             })
 
         });
+
 
         function formatRupiah(angka, prefix) {
             return 'Rp. ' + angka.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.")

@@ -92,8 +92,10 @@
                 <div class="col-md-6 mb-4" data-aos="zoom-in" data-aos-delay="200">
                     <div class="icon-box box-1 d-flex align-items-center">
                         <div class="clearfix">
-                            <h4><a style="color:#2d3436;" href="">New <br> Collection</a></h4>
-                            <p style="color:#2d3436;">Shop Now <i class="bi bi-chevron-right"></i></p>
+                            <a href="{{ url('products') }}">
+                                <h4 style="color:#2d3436;">New <br> Collection</h4>
+                                <p style="color:#2d3436;">Shop Now <i class="bi bi-chevron-right"></i></p>
+                            </a>
                         </div>
                     </div>
                 </div>

@@ -18,7 +18,7 @@ class CreateGoodsColorsTable extends Migration
             $table->unsignedBigInteger('goods_id');
             $table->foreign('goods_id')->references('id')->on('goods');
             $table->string("color");
-            $table->float("additional_price");
+            $table->float("additional_price", 12, 2);
             $table->timestamps();
         });
     }
