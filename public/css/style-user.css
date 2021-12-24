@@ -474,6 +474,7 @@ h6 {
   background: #ff9f43;
 }
 .btn-get-started:hover {
+  color: #fff;
   background: #feca57;
 }
 .btn-watch-video {
@@ -1618,7 +1619,11 @@ letter-spacing: 0.1em;
   box-shadow: 0 0 0 0 rgba(221, 171, 15, 0.5);
 }
 
-.btn-outline-warning:hover {}
+.btn-outline-orange.disabled, .btn-outline-orange:disabled {
+  color: #fdcb6e;
+  background-color: #dfe6e9;
+  background-color: transparent;
+}
 
 
 .ribbon {

@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\AccountController as AdminAccountController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\User\AccountController;
+use App\Http\Controllers\User\TransactionController;
 use App\Models\MasterFileUpload;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -27,22 +28,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index']);
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/products', [ProductsController::class, 'index'])->name('products');
+Route::get('/products/show/{id}', [ProductsController::class, 'show'])->name('products.detail');
+Route::get('/size/findByColorId/{id}', [ProductsController::class, 'getSizeByColorId'])->name('size.bycolor');
+Route::get('/faq', fn() => view('faq'));
 
-Route::get('/faq', function () {
-    return view('faq');
-});
 
 Auth::routes();
-Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::get('admin/home', [HomeController::class, 'adminHome'])->name('admin.home')->middleware('is_admin');
-Route::get('/admin/sample', function () {
-    return view('admin.sample');
-});
-
-Route::get('/products',[ProductsController::class, 'index'])->name('products');
-Route::get('/products/show/{id}',[ProductsController::class, 'show'])->name('products.detail');
 
 Route::group(['namespace' => '', 'prefix' => 'admin',  'middleware' => ['auth', 'is_admin']], function () {
+    Route::get('home', [HomeController::class, 'adminHome'])->name('admin.home');
     Route::resource('faq', MasterFaqController::class);
     Route::resource('category', MasterCategoryController::class);
     Route::resource('payment', MasterPaymentController::class);
@@ -56,9 +52,11 @@ Route::group(['namespace' => '', 'prefix' => 'admin',  'middleware' => ['auth', 
     Route::delete('goods/size/{id}', [MasterGoodsController::class, 'destroySize'])->name('goods.deletesize');
     Route::resource('files', MasterFileController::class);
     Route::get('profile', [AdminAccountController::class, 'profile'])->name('admin.profile');
+    Route::get('sample', fn () => view('admin.sample'));
 });
 
 Route::group(['namespace' => '', 'prefix' => 'user',  'middleware' => ['auth', 'is_user']], function () {
     Route::get('home', [HomeController::class, 'userHome'])->name('user.home');
     Route::get('profile', [AccountController::class, 'profile'])->name('user.profile');
+    Route::post('transaction', [TransactionController::class, 'reqBuy'])->name('transaction.req-buy');
 });

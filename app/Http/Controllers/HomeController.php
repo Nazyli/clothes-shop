@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\MasterCategory;
 use App\Models\Goods;
+use App\Models\GoodsSize;
 
 class HomeController extends Controller
 {
@@ -24,7 +25,7 @@ class HomeController extends Controller
     {
         $data = [];
         $data['categorys'] = MasterCategory::all();
-        $data['goods'] = Goods::with(['category'])->where('is_active', Goods::IS_ACTIVE_YES)->limit(9)->orderBy('id', 'desc')->get();
+        $data['goods'] = Goods::with(['category'])->where('is_active', Goods::IS_ACTIVE_YES)->limit(9)->orderBy('created_at', 'desc')->get();
         return view('welcome', $data);
     }
 

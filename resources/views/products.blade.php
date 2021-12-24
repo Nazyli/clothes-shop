@@ -21,9 +21,10 @@
 
             <div class="row">
                 @foreach ($goods as $key => $value)
-                    <div class="col-md-3 col-sm-12 mb-5">
-                        <a href="{{ route('products.detail', $value->id) }}">
-                            <div class="card">
+                    <div class="col-lg-3 col-md-4 col-sm-6 mb-5">
+                        <div class="card">
+                            <a href="{{ route('products.detail', $value->id) }}">
+
                                 @php
                                     $min10Day = Carbon\Carbon::now()->subDays(10);
                                     $startDate = \Carbon\Carbon::createFromFormat('Y-m-d', Carbon\Carbon::parse($min10Day)->format('Y-m-d'));
@@ -36,9 +37,11 @@
                                 @else <span></span>
                                 @endif
 
-                                <div class="image-container">
-                                    <img src="{{ $value->masterFileUpload()->pathImg() }}"
-                                        class="img-fluid rounded thumbnail-image">
+                                <div class="image-container ">
+                                    <div class="text-center">
+                                        <img src="{{ $value->masterFileUpload()->pathImg() }}"
+                                            class="img-fluid rounded img-thumbnail border-0" style="height :220px">
+                                    </div>
                                 </div>
                                 <div class="product-detail-container p-2">
                                     <div class="d-flex justify-content-between">
@@ -57,18 +60,19 @@
                                         </p>
                                     </div>
                                 </div>
-                                <div class="d-flex justify-content-between p-2">
-                                    <button href="{{ route('products.detail', $value->id)}}" type="button" class="btn btn-orange btn-sm" style="color:white">
-                                        <i class="fa fa-info"></i>
-                                        Details
-                                    </button>
-                                    <button class="btn btn-outline-orange btn-sm">
-                                        <i class="fa fa-cart-plus"></i>
-                                        Cart
-                                    </button>
-                                </div>
+                            </a>
+                            <div class="d-flex justify-content-between p-2">
+                                <a href="{{ route('products.detail', $value->id) }}" type="button"
+                                    class="btn btn-orange btn-sm" style="color:white">
+                                    <i class="fa fa-info"></i>
+                                    Details
+                                </a>
+                                <a class="btn btn-outline-orange btn-sm">
+                                    <i class="fa fa-cart-plus"></i>
+                                    Cart
+                                </a>
                             </div>
-                        </a>
+                        </div>
                     </div>
                 @endforeach
             </div>
