@@ -111,8 +111,10 @@
 
                         <div class="col-md-12 mb-4" data-aos="zoom-in" data-aos-delay="100">
                             <div class="icon-box box-3">
-                                <h4><a href="">Lorem <br> Ipsum</a></h4>
-                                <p>Shop Now <i class="bi bi-chevron-right"></i></p>
+                                <a href="{{ url('faq') }}">
+                                    <h4>Any<br> Question ?</h4>
+                                    <p>Click here <i class="bi bi-chevron-right"></i></p>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -254,8 +256,7 @@
 
                     <div class="swiper-slide">
                         <div class="testimonial-item">
-                            <img src="{{ asset('img/testimonials/diny.jpeg') }}" class="testimonial-img"
-                                alt="">
+                            <img src="{{ asset('img/testimonials/diny.jpeg') }}" class="testimonial-img" alt="">
                             <h3>Diny Brilianti</h3>
                             <h4>Quality Assurance</h4>
                             <p>

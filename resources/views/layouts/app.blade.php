@@ -42,7 +42,7 @@
                     <li><a class="nav-link scrollto" href="{{ url('/#clients') }}">Brand</a></li>
                     <li><a class="nav-link scrollto" href="{{ route('products') }}">Catalog</a></li>
                     <li><a class="nav-link scrollto " href="{{ url('/faq#faq') }}">FAQ</a></li>
-                    <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+                    <li><a class="nav-link scrollto" href="{{ url('/team#team') }}">Team</a></li>
                     @guest
                         <li><a href="{{ route('login') }}">Login</a></li>
                         @if (Route::has('login'))
@@ -98,7 +98,7 @@
                                 Ged Artha Graha Basement 1 <br>
                                 Senayan JAK, Dki Jakarta <br>
                                 <strong>Phone:</strong> +6285735906222<br>
-                                <strong>Email:</strong> jola@example.com<br>
+                                <strong>Website:</strong> jola.nazyli.com<br>
                             </p>
                         </div>
 

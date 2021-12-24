@@ -33,6 +33,7 @@ Route::get('/products', [ProductsController::class, 'index'])->name('products');
 Route::get('/products/show/{id}', [ProductsController::class, 'show'])->name('products.detail');
 Route::get('/size/findByColorId/{id}', [ProductsController::class, 'getSizeByColorId'])->name('size.bycolor');
 Route::get('/faq', fn() => view('faq'));
+Route::get('/team', fn() => view('team'));
 
 
 Auth::routes();
