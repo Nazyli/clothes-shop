@@ -142,10 +142,10 @@
                         </li>
 
                         <li class="nav-item">
-                            <a href="{{ url('user/trx') }}" class="nav-link">
+                            <a href="{{ url('user/purchase/history') }}" class="nav-link">
                                 <i class="nav-icon fas fa-receipt"></i>
                                 <p>
-                                    Success Transaction
+                                    Purchase History
                                 </p>
                             </a>
                         </li>

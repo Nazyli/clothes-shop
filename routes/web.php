@@ -69,6 +69,8 @@ Route::group(['namespace' => '', 'prefix' => 'user',  'middleware' => ['auth', '
     Route::get('pending', [TransactionController::class, 'pending'])->name('transaction.pending');
     Route::get('waiting', [TransactionController::class, 'waiting'])->name('transaction.waiting');
     Route::get('confirm/{id}', [TransactionController::class, 'confirm'])->name('transaction.confirm');
+    Route::get('purchase/history', [TransactionController::class, 'history'])->name('transaction.history');
+    Route::get('purchase/history/{id}', [TransactionController::class, 'show'])->name('transaction.show');
     Route::put('send-orders/{id}', [TransactionController::class, 'sendOrder'])->name('transaction.send-order');
     Route::delete('orders/{id}', [TransactionController::class, 'destroy'])->name('transaction.destroy');
     Route::resource('address', AddressController::class);

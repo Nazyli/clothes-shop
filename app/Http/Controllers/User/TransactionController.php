@@ -68,8 +68,24 @@ class TransactionController extends Controller
         //
         $orders = Orders::whereNotNull("url_evidence_transfer")
             ->where("user_id", Auth::user()->id)
+            ->whereNull("is_confirm")
             ->orderBy('created_at', 'DESC')->get();
         return view('user.transaction.waiting', compact('orders'));
+    }
+
+    public function history()
+    {
+        //
+        $orders = Orders::where("user_id", Auth::user()->id)
+            ->whereNotNull("is_confirm")
+            ->orderBy('created_at', 'DESC')->get();
+        return view('user.transaction.history', compact('orders'));
+    }
+
+    public function show($id)
+    {
+        $order = Orders::find($id);
+        return view('user.transaction.detail')->with(compact('order'));
     }
 
     public function confirm($id)
