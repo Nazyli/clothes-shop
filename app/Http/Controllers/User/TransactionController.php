@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Address;
 use App\Models\Goods;
 use App\Models\GoodsColor;
 use App\Models\GoodsSize;
@@ -12,6 +13,8 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Models\PaymentMethod;
+
 
 class TransactionController extends Controller
 {
@@ -46,16 +49,73 @@ class TransactionController extends Controller
             DB::commit();
             return redirect()->route('transaction.confirm', $ordersId)->with('success', 'New Order created successfully.');
         } catch (Exception $e) {
-            dd($e);
             DB::rollback();
             return redirect()->route('transaction.confirm', $ordersId)->with('error', $e->errorInfo[2]);
         }
     }
+
+    public function pending()
+    {
+        //
+        $orders = Orders::whereNull("url_evidence_transfer")
+            ->where("user_id", Auth::user()->id)
+            ->orderBy('created_at', 'DESC')->get();
+        return view('user.transaction.pending', compact('orders'));
+    }
+
+    public function waiting()
+    {
+        //
+        $orders = Orders::whereNotNull("url_evidence_transfer")
+            ->where("user_id", Auth::user()->id)
+            ->orderBy('created_at', 'DESC')->get();
+        return view('user.transaction.waiting', compact('orders'));
+    }
+
     public function confirm($id)
     {
         $order = Orders::find($id);
-        return view('user.confirm')->with(compact('order'));
+        $address = Address::where("user_id", Auth::user()->id)->orderBy("is_main", "DESC")->get();
+        $payment = PaymentMethod::all();
+        return view('user.transaction.confirm')->with(compact('order'))->with(compact('address'))->with(compact('payment'));
+    }
 
+    public function sendOrder(Request $request, $id)
+    {
+        $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'zip_code' => 'required',
+            'lat' => 'required',
+            'long' => 'required',
+            'full_address' => 'required',
+            'phone' => 'required',
+            'email' => 'required',
+            'payments_id' => 'required',
+            'url_evidence_transfer' => ['required', 'mimes:png,jpg,jpeg'],
+        ]);
+
+        $image = $request->file('url_evidence_transfer');
+        if (isset($image)) {
+            $publicPath = "evidence_transfer";
+            $imageName = time() . '.' . $image->extension();
+            $image->move($publicPath, $imageName);
+            $img_url = $publicPath . "/" . $imageName;
+        }
+
+        Orders::find($id)->update([
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'zip_code' => $request->zip_code,
+            'lat' => $request->lat,
+            'long' => $request->long,
+            'full_address' => $request->full_address,
+            'phone' => $request->phone,
+            'email' => $request->email,
+            'payments_id' => $request->payments_id,
+            'url_evidence_transfer' => $img_url,
+        ]);
+        return redirect()->route('transaction.waiting')->with('success', 'Order successfully, waiting to be confirmed');
     }
 
     private function toOrdersDetails($ordersId, $goods, $goodsColor, $goodsSize, $quantity)
@@ -73,6 +133,31 @@ class TransactionController extends Controller
         ];
     }
 
+    public function destroy($id)
+    {
+        //
+        DB::beginTransaction();
+        try {
+            $order = Orders::find($id);
+            $orderDetails = OrdersDetail::where('orders_id', $id)->get();
+            foreach ($orderDetails as $i) {
+                $goods = Goods::find($i->goods_id);
+                $goodsColor = GoodsColor::where("goods_id", $goods->id)->where("color", $i->color)->first();
+                $goodsSize = GoodsSize::where("goods_color_id", $goodsColor->id)->where("size", $i->size)->first();
+                $this->plusQty($goodsSize->id, $i->qty);
+                $i->delete();
+            }
+            $order->delete();
+            DB::commit();
+            return redirect()->route('transaction.pending')->with('success', 'Pending Transaction created successfully.');
+        } catch (Exception $e) {
+            DB::rollback();
+            return redirect()->route('transaction.pending')->with('error', $e->errorInfo[2]);
+        }
+    }
+
+    // Function 
+
     private function minQty($id, $qtyBuy)
     {
         $goodsSize = GoodsSize::find($id);
@@ -81,7 +166,23 @@ class TransactionController extends Controller
         ]);
         $goodsColor = GoodsColor::find($goodsSize->goods_color_id);
         return Goods::where("id", $goodsColor->goods_id)->update(
-            ['total_qty' => GoodsSize::totalQty($goodsColor->goods_id)
+            [
+                'total_qty' => GoodsSize::totalQty($goodsColor->goods_id)
+            ]
+        );
+    }
+
+    private function plusQty($id, $qtyBuy)
+    {
+        $goodsSize = GoodsSize::find($id);
+        $goodsSize->update([
+            'qty' => ($goodsSize->qty + $qtyBuy),
         ]);
+        $goodsColor = GoodsColor::find($goodsSize->goods_color_id);
+        return Goods::where("id", $goodsColor->goods_id)->update(
+            [
+                'total_qty' => GoodsSize::totalQty($goodsColor->goods_id)
+            ]
+        );
     }
 }

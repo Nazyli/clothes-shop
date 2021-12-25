@@ -15,7 +15,7 @@ class Orders extends Model
         'phone',
         'is_membership',
         'email',
-        'full_addreas',
+        'full_address',
         'zip_code',
         'lat',
         'long',
@@ -29,5 +29,14 @@ class Orders extends Model
     public function orderDetails()
     {
         return $this->hasMany(OrdersDetail::class);
+    }
+    public function fullAddressLimit($limit)
+    {
+        return \Illuminate\Support\Str::limit($this->full_address, $limit, $end = '...');
+    }
+
+    public function pathImg()
+    {
+        return isset($this->url_evidence_transfer) ? asset($this->url_evidence_transfer) : asset("evidence_transfer/default.png");
     }
 }

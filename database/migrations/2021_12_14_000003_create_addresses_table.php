@@ -17,6 +17,7 @@ class CreateAddressesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
+            $table->string('address_name');
             $table->boolean('is_main');
             $table->text('full_address');
             $table->integer('zip_code');

@@ -1,58 +1,80 @@
-.user-image-sm{
+.user-image-sm {
     float: left;
-        width: 25px;
-        height: 25px;
-        border-radius: 50%;
-        margin-right: 10px;
-        margin-top: -2px;
-  }
-  .colored-toast{
-      color :white;
-  }
-  .colored-toast.swal2-icon-success {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    margin-right: 10px;
+    margin-top: -2px;
+}
+.colored-toast {
+    color: white;
+}
+.colored-toast.swal2-icon-success {
     background-color: #a5dc86 !important;
-  }
-  
-  .colored-toast.swal2-icon-error {
-    background-color: #f27474 !important;
-  }
-  
-  .colored-toast.swal2-icon-warning {
-    background-color: #f8bb86 !important;
-  }
-  
-  .colored-toast.swal2-icon-info {
-    background-color: #3fc3ee !important;
-  }
-  
-  .colored-toast.swal2-icon-question {
-    background-color: #87adbd !important;
-  }
-  
-  .colored-toast .swal2-title {
-    color: white;
-  }
-  
-  .colored-toast .swal2-close {
-    color: white;
-  }
-  
-  .colored-toast .swal2-content {
-    color: white;
-  }
-  
+}
 
-  .rating-star {
+.colored-toast.swal2-icon-error {
+    background-color: #f27474 !important;
+}
+
+.colored-toast.swal2-icon-warning {
+    background-color: #f8bb86 !important;
+}
+
+.colored-toast.swal2-icon-info {
+    background-color: #3fc3ee !important;
+}
+
+.colored-toast.swal2-icon-question {
+    background-color: #87adbd !important;
+}
+
+.colored-toast .swal2-title {
+    color: white;
+}
+
+.colored-toast .swal2-close {
+    color: white;
+}
+
+.colored-toast .swal2-content {
+    color: white;
+}
+
+.rating-star {
     direction: rtl;
     unicode-bidi: bidi-override;
     color: #ddd; /* Personal choice */
-  }
-  .rating-star input {
+}
+.rating-star input {
     display: none;
-  }
-  .rating-star label:hover,
-  .rating-star label:hover ~ label,
-  .rating-star input:checked + label,
-  .rating-star input:checked + label ~ label {
+}
+.rating-star label:hover,
+.rating-star label:hover ~ label,
+.rating-star input:checked + label,
+.rating-star input:checked + label ~ label {
     color: #ffc107; /* Personal color choice. Lifted from Bootstrap 4 */
-  }
+}
+
+..product-details-cart {
+  padding: 10px
+}
+
+
+.product-details-cart .information span {
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.product-details-cart .information {
+    margin-bottom: 5px;
+}
+
+.product-details-cart .items {
+    -webkit-box-shadow: 5px 5px 4px -1px rgba(0, 0, 0, 0.25);
+    box-shadow: 5px 5px 4px -1px rgba(0, 0, 0, 0.08);
+}
+
+.product-details-cart .spec {
+    font-size: 11px;
+}

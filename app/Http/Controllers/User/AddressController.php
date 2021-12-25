@@ -43,6 +43,7 @@ class AddressController extends Controller
     {
         //
         $request->validate([
+            'address_name' => ['required'],
             'full_address' => ['required'],
             'zip_code' => ['required'],
             'lat' => ['required'],
@@ -55,6 +56,7 @@ class AddressController extends Controller
         Address::create([
             'user_id' => Auth::user()->id,
             'is_main' => $request->is_main == "on" ? TRUE : FALSE,
+            'address_name' => $request->address_name,
             'full_address' => $request->full_address,
             'zip_code' => $request->zip_code,
             'lat' => $request->lat,
@@ -69,9 +71,10 @@ class AddressController extends Controller
      * @param  \App\Models\Address  $address
      * @return \Illuminate\Http\Response
      */
-    public function show(Address $address)
+    public function show($id)
     {
         //
+        return json_encode(Address::find($id));
     }
 
     /**
@@ -97,6 +100,7 @@ class AddressController extends Controller
     {
         //
         $request->validate([
+            'address_name' => ['required'],
             'full_address' => ['required'],
             'zip_code' => ['required'],
             'lat' => ['required'],
@@ -109,6 +113,7 @@ class AddressController extends Controller
         }
         $address->update([
             'is_main' => $request->is_main == "on" ? TRUE : FALSE,
+            'address_name' => $request->address_name,
             'full_address' => $request->full_address,
             'zip_code' => $request->zip_code,
             'lat' => $request->lat,

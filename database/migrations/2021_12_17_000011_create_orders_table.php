@@ -21,7 +21,7 @@ class CreateOrdersTable extends Migration
             $table->string('last_name')->nullable();
             $table->string('phone')->nullable();
             $table->boolean('is_membership')->default(false);
-            $table->string('email')->unique()->nullable();
+            $table->string('email')->nullable();
             $table->text('full_address')->nullable();
             $table->integer('zip_code')->nullable();
             $table->string('lat')->nullable();

@@ -19,4 +19,10 @@ class OrdersDetail extends Model
         'qty',
         'total_price',
     ];
+
+    public function goods()
+    {
+        return Goods::find($this->goods_id);
+
+    }
 }

@@ -61,6 +61,10 @@ Route::group(['namespace' => '', 'prefix' => 'user',  'middleware' => ['auth', '
     Route::get('home', [HomeController::class, 'userHome'])->name('user.home');
     Route::get('profile', [AccountController::class, 'profile'])->name('user.profile');
     Route::post('transaction', [TransactionController::class, 'reqBuy'])->name('transaction.req-buy');
+    Route::get('pending', [TransactionController::class, 'pending'])->name('transaction.pending');
+    Route::get('waiting', [TransactionController::class, 'waiting'])->name('transaction.waiting');
     Route::get('confirm/{id}', [TransactionController::class, 'confirm'])->name('transaction.confirm');
+    Route::put('send-orders/{id}', [TransactionController::class, 'sendOrder'])->name('transaction.send-order');
+    Route::delete('orders/{id}', [TransactionController::class, 'destroy'])->name('transaction.destroy');
     Route::resource('address', AddressController::class);
 });

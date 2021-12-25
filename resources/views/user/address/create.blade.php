@@ -34,6 +34,19 @@
                                     @method('POST')
 
                                     <div class="form-group">
+                                        <label for="address_name"><strong>Address Name</strong></label>
+                                        <input type="text"
+                                            class="form-control form-control-border @error('address_name') is-invalid @enderror"
+                                            id="address_name" name="address_name"
+                                            value="{{ old('address_name') }}">
+                                        @error('address_name')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+
+                                    <div class="form-group">
                                         <label for="full_address"><strong>Full Address</strong></label>
                                         <textarea class="form-control @error('full_address') is-invalid @enderror" rows="3"
                                             placeholder="Full Address" name="full_address">{{ old('full_address') }}</textarea>

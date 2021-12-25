@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="{{ asset('vendor/toastr/toastr.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/adminlte.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style-admin.css') }}">
+    @yield('css')
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed text-sm">
@@ -123,7 +124,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a href="{{ url('user/trx') }}" class="nav-link">
+                            <a href="{{ url('user/pending') }}" class="nav-link">
                                 <i class="nav-icon fas fa-clock"></i>
                                 <p>
                                     Pending Transaction
@@ -132,7 +133,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a href="{{ url('user/trx') }}" class="nav-link">
+                            <a href="{{ url('user/waiting') }}" class="nav-link">
                                 <i class="nav-icon fas fa-spinner"></i>
                                 <p>
                                     Waiting Confirmation
@@ -213,6 +214,7 @@
     <script src="{{ asset('js/adminlte.min.js') }}"></script>
     <script src="{{ asset('js/demo.js') }}"></script>
     <script src="{{ asset('js/style-admin.js') }}"></script>
+    @yield('js')
     <script>
         @if (session('success'))
             $(document).ready(showNotif('success', '{{ session('success') }}'));
