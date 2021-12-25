@@ -114,18 +114,18 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('admin/sample') }}" class="nav-link">
-                                <i class="nav-icon fas fa-comment"></i>
+                            <a href="{{ route('orders.confirm') }}" class="nav-link">
+                                <i class="nav-icon fas fa-check"></i>
                                 <p>
-                                    Sample Page
+                                    Need Confirm
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="admin/testimoni" class="nav-link">
-                                <i class="nav-icon fas fa-comment"></i>
+                            <a href="{{ route('orders.purchase') }}" class="nav-link">
+                                <i class="nav-icon fas fa-receipt"></i>
                                 <p>
-                                    Konfirmasi Pembayaran
+                                    Purchase History
                                 </p>
                             </a>
                         </li>

@@ -25,6 +25,8 @@ class Orders extends Model
         'payments_id',
         'url_evidence_transfer',
         'no_resi',
+        'is_confirm',
+        'confirm_by',
     ];
     public function orderDetails()
     {
@@ -39,4 +41,16 @@ class Orders extends Model
     {
         return isset($this->url_evidence_transfer) ? asset($this->url_evidence_transfer) : asset("evidence_transfer/default.png");
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function paymentMethod()
+    {
+        return PaymentMethod::find($this->payments_id);
+
+    }
+
 }

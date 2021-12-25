@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\MasterPaymentController;
 use App\Http\Controllers\Admin\MasterRoleController;
 use App\Http\Controllers\Admin\MembershipController;
 use App\Http\Controllers\Admin\AccountController as AdminAccountController;
+use App\Http\Controllers\Admin\OrdersController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\User\AccountController;
@@ -54,6 +55,10 @@ Route::group(['namespace' => '', 'prefix' => 'admin',  'middleware' => ['auth', 
     Route::delete('goods/size/{id}', [MasterGoodsController::class, 'destroySize'])->name('goods.deletesize');
     Route::resource('files', MasterFileController::class);
     Route::get('profile', [AdminAccountController::class, 'profile'])->name('admin.profile');
+    Route::get('orders/confirm', [OrdersController::class, 'confirm'])->name('orders.confirm');
+    Route::get('orders/confirm/{id}', [OrdersController::class, 'confirmShow'])->name('orders.confirm-show');
+    Route::put('orders/approve/{id}', [OrdersController::class, 'confirmApprove'])->name('orders.confirm-approve');
+    Route::get('orders/purchase', [OrdersController::class, 'purchase'])->name('orders.purchase');
     Route::get('sample', fn () => view('admin.sample'));
 });
 
