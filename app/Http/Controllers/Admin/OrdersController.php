@@ -47,6 +47,15 @@ class OrdersController extends Controller
     public function purchase()
     {
         //
+        $orders = Orders::whereNotNull("is_confirm")
+            ->orderBy('created_at', 'DESC')->get();
+        return view('admin.orders.history', compact('orders'));
 
+    }
+
+    public function purchaseShow($id)
+    {
+        $order = Orders::find($id);
+        return view('admin.orders.detail')->with(compact('order'));
     }
 }

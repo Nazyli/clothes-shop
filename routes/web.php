@@ -59,6 +59,7 @@ Route::group(['namespace' => '', 'prefix' => 'admin',  'middleware' => ['auth', 
     Route::get('orders/confirm/{id}', [OrdersController::class, 'confirmShow'])->name('orders.confirm-show');
     Route::put('orders/approve/{id}', [OrdersController::class, 'confirmApprove'])->name('orders.confirm-approve');
     Route::get('orders/purchase', [OrdersController::class, 'purchase'])->name('orders.purchase');
+    Route::get('orders/purchase/{id}', [OrdersController::class, 'purchaseShow'])->name('orders.purchase-show');
     Route::get('sample', fn () => view('admin.sample'));
 });
 
