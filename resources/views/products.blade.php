@@ -67,10 +67,10 @@
                                     <i class="fa fa-info"></i>
                                     Details
                                 </a>
-                                <a class="btn btn-outline-orange btn-sm">
+                                {{--  <a class="btn btn-outline-orange btn-sm">
                                     <i class="fa fa-cart-plus"></i>
                                     Cart
-                                </a>
+                                </a>  --}}
                             </div>
                         </div>
                     </div>

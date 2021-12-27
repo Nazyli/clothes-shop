@@ -80,10 +80,11 @@
                                                     style="max-width: 120px;">{{ $value->goods()->description }}</span>
                                             </div>
                                         </div>
-                                        <div class="d-flex flex-row align-items-center"><span
-                                                class="d-block">{{ $value->qty }}</span><span
-                                                class="d-block ml-5 text-center font-weight-bold text-orange">@currency($value->total_price)</span><i
-                                                class="fa fa-trash-o ml-3 text-black-50"></i></div>
+                                        <div class="d-flex flex-row align-items-center">
+                                            <span class="d-block">{{ $value->qty }}</span>
+                                            <span
+                                                class="d-block ml-5 text-center font-weight-bold text-orange">@currency($value->total_price)</span>
+                                        </div>
                                     </div>
                                 @endforeach
 
@@ -129,9 +130,9 @@
                                 <div class="col-12">
                                     <button rel="noopener noreferrer" onclick="form_print()" target="_blank"
                                         class="btn btn-default"><i class="fas fa-print"></i> Print</button>
-                                    {{--  <button type="button" class="btn btn-primary float-right" style="margin-right: 5px;">
+                                    {{-- <button type="button" class="btn btn-primary float-right" style="margin-right: 5px;">
                                         <i class="fas fa-download"></i> Generate PDF
-                                    </button>  --}}
+                                    </button> --}}
                                 </div>
                             </div>
                         </div>

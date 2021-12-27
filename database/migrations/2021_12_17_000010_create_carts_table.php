@@ -23,6 +23,7 @@ class CreateCartsTable extends Migration
             $table->foreign('goods_color_id')->references('id')->on('goods_colors');
             $table->unsignedBigInteger('goods_sizes_id');
             $table->foreign('goods_sizes_id')->references('id')->on('goods_sizes');
+            $table->integer('qty');
             $table->timestamps();
         });
     }

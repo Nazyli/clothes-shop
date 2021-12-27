@@ -115,7 +115,7 @@
                         </li>
                         
                         <li class="nav-item">
-                            <a href="{{ url('user/trx') }}" class="nav-link">
+                            <a href="{{ url('user/cart') }}" class="nav-link">
                                 <i class="nav-icon fas fa-cart-arrow-down"></i>
                                 <p>
                                     Cart

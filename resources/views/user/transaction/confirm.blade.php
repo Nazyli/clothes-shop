@@ -66,10 +66,11 @@
                                                         style="max-width: 120px;">{{ $value->goods()->description }}</span>
                                                 </div>
                                             </div>
-                                            <div class="d-flex flex-row align-items-center"><span
-                                                    class="d-block">{{ $value->qty }}</span><span
-                                                    class="d-block ml-5 text-center font-weight-bold text-orange">@currency($value->total_price)</span><i
-                                                    class="fa fa-trash-o ml-3 text-black-50"></i></div>
+                                            <div class="d-flex flex-row align-items-center">
+                                                <span class="d-block">{{ $value->qty }}</span>
+                                                <span
+                                                    class="d-block ml-5 text-center font-weight-bold text-orange">@currency($value->total_price)</span>
+                                            </div>
                                         </div>
                                     @endforeach
                                 </div>
@@ -255,7 +256,8 @@
                                                 <input type="file"
                                                     class="custom-file-input @error('url_evidence_transfer') is-invalid @enderror"
                                                     id="url_evidence_transfer" name="url_evidence_transfer">
-                                                <label class="custom-file-label" for="url_evidence_transfer">Upload file</label>
+                                                <label class="custom-file-label" for="url_evidence_transfer">Upload
+                                                    file</label>
                                                 @error('url_evidence_transfer')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Address;
+use App\Models\Cart;
 use App\Models\Goods;
 use App\Models\GoodsColor;
 use App\Models\GoodsSize;
@@ -31,27 +32,98 @@ class TransactionController extends Controller
         ]);
         DB::beginTransaction();
         try {
-            $ordersId = Orders::create([
-                'user_id' => Auth::user()->id,
-                'is_membership' => Auth::user()->is_membership,
-                'total_price' => $request->quantity * $request->total_price,
-                'total_qty' => $request->quantity,
-            ])->id;
+            $ordersId = 0;
+            if ($request->cart) {
+                $cart = Cart::create([
+                    'user_id' => Auth::user()->id,
+                    'goods_id' => $request->goods_id,
+                    'goods_color_id' => $request->color,
+                    'goods_sizes_id' => $request->size,
+                    'qty' => $request->quantity,
+                ]);
+                DB::commit();
+                return redirect()->route('products.detail', $request->goods_id)->with('success', 'Successfully added shopping cart.');
+            } else {
+                $ordersId = Orders::create([
+                    'user_id' => Auth::user()->id,
+                    'is_membership' => Auth::user()->is_membership,
+                    'total_price' => $request->quantity * $request->total_price,
+                    'total_qty' => $request->quantity,
+                ])->id;
 
-            $goods = Goods::find($request->goods_id);
-            $goodsColor = GoodsColor::find($request->color);
-            $goodsSize = GoodsSize::find($request->size);
+                $goods = Goods::find($request->goods_id);
+                $goodsColor = GoodsColor::find($request->color);
+                $goodsSize = GoodsSize::find($request->size);
 
-            $orderDetails = OrdersDetail::create(
-                $this->toOrdersDetails($ordersId, $goods, $goodsColor, $goodsSize, $request->quantity)
-            );
-            $this->minQty($goodsSize->id, $request->quantity);
-            DB::commit();
-            return redirect()->route('transaction.confirm', $ordersId)->with('success', 'New Order created successfully.');
+                $orderDetails = OrdersDetail::create(
+                    $this->toOrdersDetails($ordersId, $goods, $goodsColor, $goodsSize, $request->quantity)
+                );
+                $this->minQty($goodsSize->id, $request->quantity);
+                DB::commit();
+                return redirect()->route('transaction.confirm', $ordersId)->with('success', 'New Order created successfully.');
+            }
         } catch (Exception $e) {
             DB::rollback();
             return redirect()->route('transaction.confirm', $ordersId)->with('error', $e->errorInfo[2]);
         }
+    }
+
+
+    public function cart()
+    {
+        //
+        $carts = Cart::where("user_id", Auth::user()->id)
+            ->orderBy('created_at', 'DESC')->get();
+        return view('user.transaction.cart', compact('carts'));
+    }
+
+    public function cartProcess(Request $request)
+    {
+        //
+
+        DB::beginTransaction();
+        try {
+            if($request->total_price <= 0){
+                return redirect()->route('transaction.cart')->with('error', 'No items selected.');
+            }
+            if ($items = $request->items_cart) {
+                $ordersId = Orders::create([
+                    'user_id' => Auth::user()->id,
+                    'is_membership' => Auth::user()->is_membership,
+                    'total_price' =>  $request->total_price,
+                    'total_qty' => 0,
+                ])->id;
+                $qty = 0;
+                foreach ($items as $item) {
+                    $cart = Cart::find($item);
+                    $goods = Goods::find($cart->goods_id);
+                    $goodsColor = GoodsColor::find($cart->goods_color_id);
+                    $goodsSize = GoodsSize::find($cart->goods_sizes_id);
+                    $orderDetails = OrdersDetail::create(
+                        $this->toOrdersDetails($ordersId, $goods, $goodsColor, $goodsSize, $cart->qty)
+                    );
+
+                    $this->minQty($cart->goods_sizes_id, $cart->qty);
+                    $qty += $cart->qty;
+                    $cart->delete();
+                }
+                Orders::where("id", $ordersId)->update(array('total_qty' => $qty));
+                DB::commit();
+                return redirect()->route('transaction.confirm', $ordersId)->with('success', 'New Order created successfully.');
+            } else {
+                return redirect()->route('transaction.cart')->with('error', 'No items selected.');
+            }
+        } catch (Exception $e) {
+            DB::rollback();
+            return redirect()->route('transaction.cart')->with('error', $e->errorInfo[2]);
+        }
+    }
+
+    public function cartDestroy($id)
+    {
+        //
+            Cart::find($id)->delete();
+            return redirect()->route('transaction.cart')->with('success', 'Cart created successfully.');
     }
 
     public function pending()
@@ -134,21 +206,6 @@ class TransactionController extends Controller
         return redirect()->route('transaction.waiting')->with('success', 'Order successfully, waiting to be confirmed');
     }
 
-    private function toOrdersDetails($ordersId, $goods, $goodsColor, $goodsSize, $quantity)
-    {
-        return [
-            'orders_id' => $ordersId,
-            'goods_id' => $goods->id,
-            'goods_name' => $goods->goods_name,
-            'color' => $goodsColor->color,
-            'additional_color_price' => $goodsColor->additional_price,
-            'size' => $goodsSize->size,
-            'additional_size_price' => $goodsSize->additional_price,
-            'qty' => $quantity,
-            'total_price' => ($quantity * ($goods->base_price + $goodsColor->additional_price + $goodsSize->additional_price)),
-        ];
-    }
-
     public function destroy($id)
     {
         //
@@ -173,6 +230,22 @@ class TransactionController extends Controller
     }
 
     // Function 
+
+
+    private function toOrdersDetails($ordersId, $goods, $goodsColor, $goodsSize, $quantity)
+    {
+        return [
+            'orders_id' => $ordersId,
+            'goods_id' => $goods->id,
+            'goods_name' => $goods->goods_name,
+            'color' => $goodsColor->color,
+            'additional_color_price' => $goodsColor->additional_price,
+            'size' => $goodsSize->size,
+            'additional_size_price' => $goodsSize->additional_price,
+            'qty' => $quantity,
+            'total_price' => ($quantity * ($goods->base_price + $goodsColor->additional_price + $goodsSize->additional_price)),
+        ];
+    }
 
     private function minQty($id, $qtyBuy)
     {

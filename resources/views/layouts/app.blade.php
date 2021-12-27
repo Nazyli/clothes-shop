@@ -21,15 +21,28 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css">
     <link href="{{ asset('vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
     <link href="{{ asset('vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('vendor/toastr/toastr.min.css') }}">
     <link href="{{ asset('vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
     @yield('css')
     <link href="{{ asset('css/style-user.css') }}" rel="stylesheet">
+    <style>
+        #notif-cart .badge {
+            position: relative;
+            top: -10px;
+            right: 0px;
+            background-color: #ff9f43;
+            border-radius: 50%;
+            color: #fff;
+            font-weight: bold;
+        }
+
+    </style>
 
 </head>
 
 <body>
     <header id="header" class="d-flex align-items-center">
-        <div class="container d-flex align-items-center justify-content-between">
+        <div class="container d-flex align-items-center justify-content-start">
 
             <a href="/" class="logo"><img src="{{ asset('img/logo.png') }}" alt=""></a>
 
@@ -44,26 +57,42 @@
                     <li><a class="nav-link scrollto " href="{{ url('/faq#faq') }}">FAQ</a></li>
                     <li><a class="nav-link scrollto" href="{{ url('/team#team') }}">Team</a></li>
                     @guest
-                        <li><a href="{{ route('login') }}">Login</a></li>
-                        @if (Route::has('login'))
-
-                        @endif
+                        <li><a class="nav-link" href="{{ route('login') }}">Login</a></li>
                     @else
-                        <li class="dropdown"><a href="#"><span>
-                                    {{ Auth::user()->first_name }}</span> <i class="bi bi-chevron-right"></i></a>
+                    @php $totalCart = App\Models\Cart::where("user_id", Auth::user()->id)->get()->count(); @endphp
+                        <li class="dropdown">
+                            <a href="#"><span>
+                                    {{ Auth::user()->first_name }}</span>
+                                    @if( $totalCart > 0)
+                                <div id="notif-cart">
+                                    <label class="badge">{{  $totalCart }}</label>
+                                </div>
+                                @endif
+                            </a>
                             <ul>
                                 <li>
                                     @if (auth()->user()->role_id == 1)
-                                        <a href="{{ url('admin/profile') }}">Profile</a>
+                                        <a href="{{ url('admin/profile') }}" style="max-width: 200px">Profile</a>
                                     @elseif (auth()->user()->role_id == 2)
-                                        <a href="{{ url('user/profile') }}">Profile</a>
+                                        <a href="{{ url('user/profile') }}">Profile </a>
                                     @else
                                         <a href="#">Profile</a>
                                     @endif
                                 </li>
+
+                                @if (auth()->user()->role_id == 2)
+                                    <li>
+                                        <a href="{{ route('transaction.cart') }}">Cart
+                                            <span class="badge" style="background-color: #ff9f43;
+                                            border-radius: 50%;
+                                            color: #fff;">{{ $totalCart }}</span>
+                                        </a>
+                                    </li>
+                                @endif
+
                                 <li>
-                                    <a href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                              document.getElementById('logout-form').submit();">
+                                    <a href="{{ route('logout') }}"
+                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST"
@@ -152,9 +181,37 @@
         <script src="{{ asset('vendor/swiper/swiper-bundle.min.js') }}"></script>
         <script src="{{ asset('vendor/waypoints/noframework.waypoints.js') }}"></script>
         <script src="{{ asset('vendor/php-email-form/validate.js') }}"></script>
+        <script src="{{ asset('vendor/toastr/toastr.min.js') }}"></script>
         <script src="{{ asset('js/main-user.js') }}"></script>
         @yield('js')
-
+        <script>
+            function showNotif(status, message) {
+                toastr.options = {
+                    "closeButton": true,
+                    "debug": false,
+                    "newestOnTop": true,
+                    "progressBar": true,
+                    "positionClass": "toast-top-right",
+                    "preventDuplicates": true,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "5000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                }
+                toastr[status](message);
+            };
+            @if (session('success'))
+                $(document).ready(showNotif('success', '{{ session('success') }}'));
+            @endif
+            @if (session('error'))
+                $(document).ready(showNotif('error', '{{ session('error') }}'));
+            @endif
+        </script>
     </body>
 
     </html>

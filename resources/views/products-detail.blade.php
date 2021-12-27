@@ -156,11 +156,11 @@
                                     </div>
 
                                     <div class="d-flex justify-content-between mt-3">
-                                        <button class="btn btn-orange btn-sm" name="buy" style="color:white">
+                                        <button class="btn btn-orange btn-sm" name="buy" value="1" style="color:white">
                                             <i class="fa fa-shopping-cart"></i>
                                             Buy Now
                                         </button>
-                                        <button class="btn btn-outline-orange btn-sm" name="cart">
+                                        <button class="btn btn-outline-orange btn-sm" value="1" name="cart">
                                             <i class="fa fa-cart-plus"></i>
                                             Cart
                                         </button>
