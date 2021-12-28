@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>JOLA | Aplikasi Penjualan Baju</title>
+    <title>Admin | Aplikasi Penjualan Baju</title>
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('img/shop.png') }}">
 
     <link rel="stylesheet"
@@ -31,7 +31,7 @@
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="#" class="nav-link">
-                        Aplikasi Penjualan Baju - JOLA
+                        Aplikasi Penjualan Baju
                     </a>
                 </li>
             </ul>
@@ -40,17 +40,17 @@
                     <a class="nav-link" data-toggle="dropdown" href="#">
                         <img src="{{ Auth::user()->pathImg() }}" class="user-image-sm" alt="User Image">
                         <span class="hidden-xs">
-                            {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}
+                             {{ Auth::user()->getFullName() }}
                         </span>
                     </a>
                     <ul class="dropdown-menu">
                         <li class="user-header">
                             <img src="{{ Auth::user()->pathImg() }}" class="img-circle" alt="User Image">
                             <p>
-                                {{ Auth::user()->first_name }} {{ Auth::user()->last_name }} -
+                                 {{ Auth::user()->getFullName() }} -
                                 Administrator
                                 <small>Member since -
-                                    12 Desember 2021
+                                    {{ date('d F Y', strtotime(Auth::user()->created_at)) }}
                                 </small>
                             </p>
                         </li>
@@ -87,7 +87,7 @@
         </nav>
         <aside class="main-sidebar main-sidebar-custom sidebar-light-primary elevation-4">
             <a href="{{ url('/') }}" class="brand-link text-sm navbar-orange">
-                <img src="{{ asset('img/shop.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+                <img src="{{ asset('img/shop.png') }}" class="brand-image img-circle elevation-3"
                     style="opacity: .8">
                 <span class="brand-text font-weight-light text-light">J O L A</span>
             </a>
