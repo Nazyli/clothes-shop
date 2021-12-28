@@ -2,18 +2,13 @@
 
 namespace Database\Seeders;
 
-use App\Models\Goods;
-use App\Models\GoodsColor;
-use App\Models\GoodsSize;
+use App\Models\Address;
 use App\Models\MasterCategory;
-use App\Models\MasterFaq;
-use App\Models\MasterFileUpload;
 use App\Models\PaymentMethod;
 use App\Models\RoleMembership;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Faker\Factory as Faker;
 
 class DatabaseSeeder extends Seeder
 {
@@ -97,56 +92,31 @@ class DatabaseSeeder extends Seeder
                 User::create($value);
             }
 
-            $faker = Faker::create('id_ID');
-            $faker->addProvider(new \Bezhanov\Faker\Provider\Commerce($faker));
-            $faker->addProvider(new \Bezhanov\Faker\Provider\Avatar($faker));
-
-            $category = DB::select('SELECT id FROM master_categories ');
-            $categoryArray = json_decode(json_encode($category), true);
-            for ($i = 0; $i < 100; $i++) {
-                $cat_id = (int)$faker->randomElement(collect($categoryArray)->flatten());
-                $id = Goods::insertGetId([
-                    "goods_name" => $faker->productName,
-                    "description" => $faker->text,
-                    "category_id" => $cat_id,
-                    "is_active" => true,
-                    "base_price" => $faker->numberBetween(50000, 250000),
-                    "total_qty" => $faker->numberBetween(5, 20),
-                ]);
-                for ($j = 0; $j < $faker->numberBetween(1, 5); $j++) {
-                    $idColor = GoodsColor::insertGetId([
-                        "goods_id" => $id,
-                        "color" => $faker->colorName,
-                        "additional_price" => $faker->numberBetween(1000, 5000),
-                    ]);
-                    $size = ["XS", "S", "M", "L", "XL", "XXL"];
-                    for ($k = 0; $k < count($size); $k++) {
-                        GoodsSize::insertGetId([
-                            "goods_color_id" => $idColor,
-                            "size" => $size[$k],
-                            "additional_price" => $faker->numberBetween(1000, 5000),
-                            "qty" => $faker->numberBetween(1, 5),
-                        ]);
-                    }
-                    Goods::where("id", $id)->update(array('total_qty' => GoodsSize::totalQty($id)));
-                }
-
-                // image
-                for ($j = 0; $j < $faker->numberBetween(1, 5); $j++) {
-                    MasterFileUpload::insertGetId([
-                        "goods_id" => $id,
-                        "url_path" => $faker->avatar
-                    ]);
-                }
+            $addresses = [
+                [
+                    "user_id" => 2,
+                    "address_name" => "Rumah",
+                    "is_main" => 1,
+                    "full_address" => "Jl Mataram 100, Jawa Tengah, Yogyakarta",
+                    "zip_code" => 8742917,
+                    "lat" => "-158.265114",
+                    "long" => "45.792650",
+                ], [
+                    "user_id" => 2,
+                    "address_name" => "Kantor",
+                    "is_main" => 0,
+                    "full_address" => "Jl KH Hasyim Ashari 125 ITC Roxy Mas Lt 3 110,Cideng",
+                    "zip_code" => 63374,
+                    "lat" => "26.826999",
+                    "long" => "-40.995129",
+                ]
+            ];
+            foreach ($addresses as $key => $value) {
+                Address::create($value);
             }
-
-            // FAQ
-            for ($j = 0; $j < 6; $j++) {
-                MasterFaq::insertGetId([
-                    "title" => $faker->realText(rand(10, 30)),
-                    "body" => $faker->text
-                ]);
-            }
+            $this->call([
+                MasterSeeder::class
+            ]);
         });
     }
 }
