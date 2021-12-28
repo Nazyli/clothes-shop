@@ -16,6 +16,11 @@ class GoodsSize extends Model
         'qty',
     ];
 
+    public function goodsColor()
+    {
+        return $this->belongsTo(GoodsColor::class);
+    }
+
     public static function totalQty($id)
     {
         return DB::table('goods_sizes')

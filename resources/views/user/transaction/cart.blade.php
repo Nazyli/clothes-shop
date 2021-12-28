@@ -38,17 +38,27 @@
                                 enctype="multipart/form-data">
                                 @csrf
                                 <div class="product-details-cart mr-2">
-                                    <h6 class="mb-0">
-                                        <input type="checkbox" id="select-all" class="align-self-center mr-2">
-                                        Select All
-                                    </h6>
+                                    <div class="mb-0 mr-2 align-self-center ">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" id="select-all"
+                                                class="custom-control-input custom-control-input-orange custom-control-input-outline"
+                                                type="checkbox">
+                                            <label for="select-all" class="custom-control-label font-weight-normal">Select
+                                                All</label>
+                                        </div>
+                                    </div>
                                     @foreach ($carts as $value)
                                         <div
                                             class="d-flex justify-content-between align-items-center mt-3 p-2 items rounded">
                                             <div class="d-flex flex-wrap">
-                                                <input type="checkbox" name="items_cart[]"
-                                                    class="items_cart align-self-center mr-2"
-                                                    data-price="{{ $value->price() }}" value="{{ $value->id }} ">
+                                                <div class="custom-control custom-checkbox">
+                                                    <input id="select-all-{{ $value->id }}" name="items_cart[]"
+                                                        class="items_cart custom-control-input custom-control-input-orange custom-control-input-outline"
+                                                        type="checkbox" data-price="{{ $value->price() }}"
+                                                        value="{{ $value->id }} ">
+                                                    <label for="select-all-{{ $value->id }}"
+                                                        class="custom-control-label font-weight-normal"></label>
+                                                </div>
                                                 <img class="rounded"
                                                     src="{{ $value->goods()->masterFileUpload()->pathImg() }}" width="60">
                                                 <div class="ml-2">

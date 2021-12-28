@@ -27,7 +27,7 @@ $history = App\Models\Orders::where('user_id', Auth::user()->id)
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="text-Welcome Back">Welcome Back</span></h1>
+                        <h1 class="text-navy">Welcome Back</h1>
                         <h6 class="mt-2 text-primary"> <i class="fas fa-user mr-2"></i>  {{ Auth::user()->getFullName() }} 
                         </h6>
                     </div>

@@ -14,6 +14,11 @@ class GoodsColor extends Model
         'additional_price',
     ];
 
+    public function goods()
+    {
+        return $this->belongsTo(Goods::class);
+    }
+
     public function goodsSizes(){
         return $this->hasMany(GoodsSize::class);
     }

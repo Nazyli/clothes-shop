@@ -1,3 +1,14 @@
+@php
+function isActiveLink($text)
+{
+    if (\Request::is($text) or \Request::is($text . '/*')) {
+        return 'active text-light';
+    } else {
+        return null;
+    }
+}
+@endphp
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -85,7 +96,7 @@
                 </li>
             </ul>
         </nav>
-        <aside class="main-sidebar main-sidebar-custom sidebar-light-primary elevation-4">
+        <aside class="main-sidebar main-sidebar-custom sidebar-light-orange elevation-4">
             <a href="{{ url('/') }}" class="brand-link text-sm navbar-orange">
                 <img src="{{ asset('img/shop.png') }}" class="brand-image img-circle elevation-3"
                     style="opacity: .8">
@@ -106,7 +117,7 @@
                     <ul class="nav nav-pills nav-sidebar flex-column nav-flat nav-compact nav-child-indent"
                         data-widget="treeview" role="menu" data-accordion="false">
                         <li class="nav-item">
-                            <a href="{{ url('admin/home') }}" class="nav-link">
+                            <a href="{{ url('admin/home') }}" class="nav-link {{ isActiveLink('admin/home') }}">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
                                     Dashboard
@@ -114,7 +125,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('orders.confirm') }}" class="nav-link">
+                            <a href="{{ route('orders.confirm') }}" class="nav-link {{ isActiveLink('admin/orders/confirm') }}">
                                 <i class="nav-icon fas fa-check"></i>
                                 <p>
                                     Need Confirm
@@ -122,7 +133,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('orders.purchase') }}" class="nav-link">
+                            <a href="{{ route('orders.purchase') }}" class="nav-link {{ isActiveLink('admin/orders/purchase') }}">
                                 <i class="nav-icon fas fa-receipt"></i>
                                 <p>
                                     Purchase History
@@ -130,17 +141,17 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('admin/goods') }}" class="nav-link">
+                            <a href="{{ url('admin/goods') }}" class="nav-link {{ isActiveLink('admin/goods') }}">
                                 <i class="nav-icon fas fa-tshirt"></i>
                                 <p>
-                                    Data Baju
+                                    Products
                                 </p>
                             </a>
                         </li>
                         <li class="nav-header">Master Data</li>
 
                         <li class="nav-item">
-                            <a href="{{ url('admin/faq') }}" class="nav-link">
+                            <a href="{{ url('admin/faq') }}" class="nav-link {{ isActiveLink('admin/faq') }}">
                                 <i class="nav-icon fas fa-question"></i>
                                 <p>
                                     Master Faq
@@ -148,7 +159,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('admin/category') }}" class="nav-link">
+                            <a href="{{ url('admin/category') }}" class="nav-link {{ isActiveLink('admin/category') }}">
                                 <i class="nav-icon fas fa-list-alt"></i>
                                 <p>
                                     Master Category
@@ -157,7 +168,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a href="{{ url('admin/payment') }}" class="nav-link">
+                            <a href="{{ url('admin/payment') }}" class="nav-link {{ isActiveLink('admin/payment') }}">
                                 <i class="nav-icon fas fa-credit-card"></i>
                                 <p>
                                     Master Payment
@@ -166,7 +177,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a href="{{ url('admin/role') }}" class="nav-link">
+                            <a href="{{ url('admin/role') }}" class="nav-link {{ isActiveLink('admin/role') }}">
                                 <i class="nav-icon fas fa-key"></i>
                                 <p>
                                     Master Role
@@ -176,7 +187,7 @@
 
                         <li class="nav-header">Account</li>
                         <li class="nav-item">
-                            <a href="{{ url('admin/user') }}" class="nav-link">
+                            <a href="{{ url('admin/user') }}" class="nav-link {{ isActiveLink('admin/user') }}">
                                 <i class="nav-icon fas fa-users"></i>
                                 <p>
                                     Membership
@@ -184,7 +195,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('admin/profile') }}" class="nav-link">
+                            <a href="{{ url('admin/profile') }}" class="nav-link {{ isActiveLink('admin/profile') }}">
                                 <i class="nav-icon fas fa-user"></i>
                                 <p>
                                     My Profile
@@ -192,7 +203,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="about" class="nav-link">
+                            <a href="{{ url('admin/about') }}" class="nav-link {{ isActiveLink('admin/about') }}">
                                 <i class="nav-icon fas fa-info-circle"></i>
                                 <p>
                                     About
