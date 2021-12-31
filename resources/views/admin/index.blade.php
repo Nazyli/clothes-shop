@@ -124,8 +124,8 @@
                                         <thead>
                                             <tr>
                                                 <th>Order ID</th>
-                                                <th>Product</th>
                                                 <th>Status</th>
+                                                <th>Qty</th>
                                                 <th>Total Price</th>
                                             </tr>
                                         </thead>
@@ -134,7 +134,6 @@
         as $value)
                                                 <tr>
                                                     <td class="text-primary font-weight-bold">ID#{{ $value->id }}</td>
-                                                    <td>{{ $value->goods_name }}</td>
                                                     @php
                                                         $colorBadge = '';
                                                         $status = '';
@@ -151,6 +150,7 @@
                                                     @endphp
                                                     <td><span class="badge {{ $colorBadge }}">{{ $status }}</span>
                                                     </td>
+                                                    <td>{{ $value->total_qty }}</td>
                                                     <td class="text-warning font-weight-bold text-right">
                                                         @currency($value->total_price)</td>
                                                 </tr>
@@ -161,7 +161,7 @@
                                 </div>
                             </div>
                             <div class="card-footer clearfix">
-                                <a href="{{ route('orders.confirm') }}" class="btn btn-sm btn-info float-left">Need
+                                <a href="{{ route('orders.confirm') }}" class="btn btn-sm btn-warning float-left">Need
                                     Confirm</a>
                                 <a href="{{ route('orders.purchase') }}"
                                     class="btn btn-sm btn-success float-right">Shipped

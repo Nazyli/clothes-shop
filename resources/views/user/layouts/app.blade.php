@@ -105,7 +105,7 @@ function isActiveLink($text)
             <div class="sidebar">
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
-                        <img src="{{ asset('user/default.png') }}" class="img-circle elevation-2" alt="User Image">
+                        <img src="{{ Auth::user()->pathImg() }}" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
                         <a href="{{ url('user/home') }}" class="d-block">{{ Auth::user()->first_name }}

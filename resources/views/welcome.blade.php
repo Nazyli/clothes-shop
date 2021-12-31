@@ -12,7 +12,7 @@
                     <h1>LETS CREATE YOUR OWN STYLE</h1>
                     <h2>Fashion is life-enhancing and we always bring out the stars in yourself</h2>
                     <div class="d-flex">
-                        <a href="#about" class="btn-get-started scrollto">SHOP NOW</a>
+                        <a href="{{ route('products') }}" class="btn-get-started scrollto">SHOP NOW</a>
                     </div>
                 </div>
             </div>
@@ -104,7 +104,7 @@
                     <div class="row">
                         <div class="col-md-12 mb-4" data-aos="zoom-in" data-aos-delay="100">
                             <div class="icon-box box-2">
-                                <h4><a href="">Custom <br>
+                                <h4><a href="{{ route('products') }}">Custom <br>
                                         Clothes</a></h4>
                                 <p>Shop Now <i class="bi bi-chevron-right"></i></p>
 
