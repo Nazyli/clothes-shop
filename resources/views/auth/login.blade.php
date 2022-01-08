@@ -7,7 +7,7 @@
                 <img src="{{ asset('img/logo.png') }}" class="rounded">
             </a>
         </div>
-        <div class="text-muted">Don&apos;t have an account? ? <a class="text-danger"
+        <div class="text-muted">Don&apos;t have an account? <a class="text-danger"
                 href="{{ url('/register') }}">Sign Up </a></div>
         {{--  <hr />
         <div class="row">
