@@ -83,7 +83,7 @@ class MasterSeeder extends Seeder
                 [
                     "id" => 11,
                     "goods_name" => "Sweeter Hoodie Pria",
-                    "description" => "Sweater Hoodie Pria Cowok Jaket Keren Morte Sweater Hodie Fleece - Hitam di Kaguya Stuff. Promo khusus pengguna baru di aplikasi Jola!",
+                    "description" => "Sweater Hoodie Pria Cowok Jaket Keren Morte Sweater Hodie Fleece - Hitam di Kaguya Stuff. Promo khusus pengguna baru di aplikasi SIMCLOTH!",
                     "category_id" => 4,
                     "is_active" => 1,
                     "base_price" => 100000,
@@ -423,13 +423,13 @@ class MasterSeeder extends Seeder
 
             $faqs = [
                 [
-                    "title" => "Bagaimana cara melakukan Login ke aplikasi JOLA?",
+                    "title" => "Bagaimana cara melakukan Login ke aplikasi SIMCLOTH?",
                     "body" => "Masukkan email dan password, jika belum ada akun, lakukan pendaftaran pada menu Sign Up",
                 ], [
-                    "title" => "Bagaimana cara melakukan Sign Up pada aplikasi JOLA?",
-                    "body" => "Pilih menu Sign Up , lalu isikan data diri anda mulai dari nama, email, nomor telepon, dan password. Setelah itu klik Sign up, jika sudah maka akun JOLA sudah berhasil dibuat.",
+                    "title" => "Bagaimana cara melakukan Sign Up pada aplikasi SIMCLOTH?",
+                    "body" => "Pilih menu Sign Up , lalu isikan data diri anda mulai dari nama, email, nomor telepon, dan password. Setelah itu klik Sign up, jika sudah maka akun SIMCLOTH sudah berhasil dibuat.",
                 ], [
-                    "title" => "Bagaimana cara melakukan pemesanan pada aplikasi JOLA?",
+                    "title" => "Bagaimana cara melakukan pemesanan pada aplikasi SIMCLOTH?",
                     "body" => "Pada tampilan Home, pilih menu Catalog pada bar atas website, setelah itu Anda dapat memilih baju yang cocok untuk langsung dibeli atau dimasukkan ke keranjang terlebih dahulu.",
                 ], [
                     "title" => "Bagaimana cara mengapus atau mengubah pesanan?",

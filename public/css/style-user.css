@@ -420,8 +420,8 @@ h6 {
 #hero {
   width: 100%;
   height: 75vh;
-  background: url("../img/hero-bg.jpeg") top left;
-  /* background-image: linear-gradient(70deg, #FF3636, #FFE1B1); */
+  /* background: url("../img/hero-bg.jpeg") top left; */
+  background-image: linear-gradient(70deg, #FEC669,#FC9E19);
   /* background: linear-gradient(
       253.31deg,
       rgba(255, 54, 54, 0.2) 15.35%,
@@ -433,7 +433,7 @@ h6 {
 }
 #hero:before {
   content: "";
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.1);
   position: absolute;
   bottom: 0;
   top: 0;
@@ -457,8 +457,10 @@ h6 {
 #hero h2 {
   color: #fff;
   margin: 5px 0 30px 0;
-  font-size: 24px;
-  font-weight: 400;
+  font-size: 18px;
+  /* font-weight: 400; */
+  font-style: italic;
+  text-align: justify;
 }
 .btn-get-started {
   font-family: "Roboto", sans-serif;
@@ -893,7 +895,7 @@ letter-spacing: 0.1em;
 --------------------------------------------------------------*/
 .testimonials {
   padding: 80px 0;
-  background: url("../img/testimonials-bg.jpg") no-repeat;
+  background: url("../img/testimonials-bg.png") no-repeat;
   background-position: center center;
   background-size: cover;
   position: relative;

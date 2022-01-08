@@ -13,7 +13,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.css">
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css">
-    <title>JOLA</title>
+    <title>SIMCLOTH - Simple Clothing</title>
+    <link href="{{ asset('favicon.ico') }}" rel="icon">
+    <link href="{{ asset('favicon.ico') }}" rel="apple-touch-icon">
 </head>
 
 <body>
@@ -32,7 +34,7 @@
                                 </div>
                                 <div> <img src="https://img.icons8.com/clouds/200/000000/group.png" />
                                     <h4>100+ Regular customers</h4>
-                                    <p>Many people have recommended JOLA</p>
+                                    <p>Many people have recommended SIMCLOTH</p>
                                 </div>
                                 <div> <img
                                         src="https://img.icons8.com/bubbles/200/000000/lady-with-a-security-shield.png" />

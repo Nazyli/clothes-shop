@@ -9,8 +9,9 @@
                         style="max-width: 400px; " />
                 </div>
                 <div class="col-md-6">
-                    <h1>LETS CREATE YOUR OWN STYLE</h1>
-                    <h2>Fashion is life-enhancing and we always bring out the stars in yourself</h2>
+                    <h1>BAJU STYLISH BODY STYLISH</h1>
+                    <h2>Kamu akan mendapatkan hal yang kamu sukai atau kamu impikan disini. Kepoin yuk produk Fashion
+                        terbaru dan berkualitas dari kami.</h2>
                     <div class="d-flex">
                         <a href="{{ route('products') }}" class="btn-get-started scrollto">SHOP NOW</a>
                     </div>
@@ -104,9 +105,11 @@
                     <div class="row">
                         <div class="col-md-12 mb-4" data-aos="zoom-in" data-aos-delay="100">
                             <div class="icon-box box-2">
-                                <h4><a href="{{ route('products') }}">Custom <br>
-                                        Clothes</a></h4>
-                                <p>Shop Now <i class="bi bi-chevron-right"></i></p>
+                                <a href="{{ route('products') }}">
+                                    <h4 class="text-light">Custom <br>
+                                        Clothes</h4>
+                                    <p>Shop Now <i class="bi bi-chevron-right"></i></p>
+                                </a>
 
                             </div>
                         </div>
@@ -114,7 +117,7 @@
                         <div class="col-md-12 mb-4" data-aos="zoom-in" data-aos-delay="100">
                             <div class="icon-box box-3">
                                 <a href="{{ url('faq') }}">
-                                    <h4>Any<br> Question ?</h4>
+                                    <h4 class="text-light">Any<br> Question ?</h4>
                                     <p>Click here <i class="bi bi-chevron-right"></i></p>
                                 </a>
                             </div>
@@ -181,7 +184,7 @@
                         <div class="testimonial-item">
                             <img src="{{ asset('img/testimonials/evry.jpg') }}" class="testimonial-img" alt="">
                             <h3>Evry Nazyli Ciptanto</h3>
-                            <h4>Ceo &amp; Founder</h4>
+                            <h4>Backend Developer</h4>
                             <p>
                                 <i class="bx bxs-quote-alt-left quote-icon-left"></i>
                                 Everything was perfect and exactly what we wanted on this website
@@ -194,10 +197,10 @@
                         <div class="testimonial-item">
                             <img src="{{ asset('img/testimonials/raga.jpeg') }}" class="testimonial-img" alt="">
                             <h3>Raga Murtadha Muthahari</h3>
-                            <h4>Designer</h4>
+                            <h4>UI UX Designer</h4>
                             <p>
                                 <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                                Love your goods good quality year after year and I tell everyone to shop at jola
+                                Love your goods good quality year after year and I tell everyone to shop at SIMCLOTH
                                 <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                             </p>
                         </div>
@@ -207,24 +210,12 @@
                         <div class="testimonial-item">
                             <img src="{{ asset('img/testimonials/rafif.jpeg') }}" class="testimonial-img" alt="">
                             <h3>Rafif Mulia Reswara</h3>
-                            <h4>Development</h4>
+                            <h4>Web Back-End Developer</h4>
                             <p>
                                 <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                                Super soft t-shirts at such a great price, i&apos;d have to pay 2 or 3 times more at jola
+                                Super soft t-shirts at such a great price, i&apos;d have to pay 2 or 3 times more at
+                                SIMCLOTH
                                 for this quality
-                                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="swiper-slide">
-                        <div class="testimonial-item">
-                            <img src="{{ asset('img/testimonials/alfi.jpeg') }}" class="testimonial-img" alt="">
-                            <h3>Alfi Syahri</h3>
-                            <h4>Store Owner</h4>
-                            <p>
-                                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                                Amazing service from start to finish i had a fabulous experience shopping in jola
                                 <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                             </p>
                         </div>
@@ -234,10 +225,10 @@
                         <div class="testimonial-item">
                             <img src="{{ asset('img/testimonials/ali.jpeg') }}" class="testimonial-img" alt="">
                             <h3>Ali Mahmud</h3>
-                            <h4>Freelancer</h4>
+                            <h4>Warehouseman Metrodata Elektronik,Tbk</h4>
                             <p>
                                 <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                                Clothing products at Jola are very good and of good quality, i very proud for jola
+                                Clothing products at SIMCLOTH are very good and of good quality, i very proud for SIMCLOTH
                                 <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                             </p>
                         </div>
@@ -247,10 +238,10 @@
                         <div class="testimonial-item">
                             <img src="{{ asset('img/testimonials/farid.jpeg') }}" class="testimonial-img" alt="">
                             <h3>Farid Muhari</h3>
-                            <h4>Entrepreneur</h4>
+                            <h4>Freelance Engineer</h4>
                             <p>
                                 <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                                I like shopping at JOLA because the website is very easy for customers to understand
+                                I like shopping at SIMCLOTH because the website is very easy for customers to understand
                                 <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                             </p>
                         </div>
@@ -260,10 +251,10 @@
                         <div class="testimonial-item">
                             <img src="{{ asset('img/testimonials/diny.jpeg') }}" class="testimonial-img" alt="">
                             <h3>Diny Brilianti</h3>
-                            <h4>Quality Assurance</h4>
+                            <h4>Admin and Moderator Digital Literacy KOMINFO</h4>
                             <p>
                                 <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                                Very fast response & helpful service, jola is best recommend
+                                Very fast response & helpful service, SIMCLOTH is best recommend
                                 <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                             </p>
                         </div>

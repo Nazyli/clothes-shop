@@ -5,12 +5,12 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>JOLA</title>
+    <title>SIMCLOTH - Simple Clothing</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
-    <link href="{{ asset('img/logo.png') }}" rel="icon">
-    <link href="{{ asset('img/logo.png') }}" rel="apple-touch-icon">
+    <link href="{{ asset('favicon.ico') }}" rel="icon">
+    <link href="{{ asset('favicon.ico') }}" rel="apple-touch-icon">
 
     <link
         href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
@@ -123,11 +123,10 @@
                             <a href="/" class="mb-3"><img src="{{ asset('img/logo.png') }}" alt=""
                                     class="img-fluid"></a>
                             <p>
-                                Jl Jend Sudirman Kav 52-53 <br>
-                                Ged Artha Graha Basement 1 <br>
-                                Senayan JAK, Dki Jakarta <br>
-                                <strong>Phone:</strong> +6285735906222<br>
-                                <strong>Website:</strong> jola.nazyli.com<br>
+                                Jl. Rambutan No. 56 RT/02 RW/05 <br>
+                                Beji Timur Kota Depok, Jawa Barat <br>
+                                <strong>Phone:</strong> +6289637568674<br>
+                                <strong>Email:</strong> <a href="mailto:simcloth@nazyli.com">simcloth@nazyli.com</a><br>
                             </p>
                         </div>
 
@@ -153,7 +152,7 @@
 
                         <div class="col-lg-3 col-md-6 footer-links">
                             <h4>Our Social Networks</h4>
-                            <strong>PT JOLA MEMBANGUN INDONESIA</strong>
+                            <strong>SIMCLOTH - SIMPLE CLOTHING</strong>
                             <p>Depok</p>
                             <div class="social-links mt-3">
                                 <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>

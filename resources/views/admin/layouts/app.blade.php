@@ -100,7 +100,7 @@ function isActiveLink($text)
             <a href="{{ url('/') }}" class="brand-link text-sm navbar-orange">
                 <img src="{{ asset('img/shop.png') }}" class="brand-image img-circle elevation-3"
                     style="opacity: .8">
-                <span class="brand-text font-weight-light text-light">J O L A</span>
+                <span class="brand-text font-weight-light text-light">S I M C L O T H</span>
             </a>
 
             <div class="sidebar">

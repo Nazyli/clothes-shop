@@ -39,11 +39,11 @@
                                 <div class="col-sm-4 invoice-col">
                                     From
                                     <address>
-                                        <strong>JOLA, App.</strong><br>
-                                        Jl Jend Sudirman Kav 52-53<br>
-                                        Senayan JAK, Dki Jakarta <br>
-                                        Phone: +6285735906222<br>
-                                        Email: jola@nazyli.com
+                                        <strong>SIMCLOTH, App.</strong><br>
+                                        Jl. Rambutan No. 56 RT/02 RW/05 <br>
+                                        Beji Timur Kota Depok, Jawa Barat <br>
+                                        Phone: +6289637568674<br>
+                                        Email: <a href="mailto:simcloth@nazyli.com">simcloth@nazyli.com</a>
                                     </address>
                                 </div>
                                 <div class="col-sm-4 invoice-col">
@@ -52,7 +52,7 @@
                                         <strong>{{ $order->user->getFullName() }}</strong><br>
                                         {{ $order->full_address }}<br>
                                         Phone: {{ $order->phone }}<br>
-                                        Email: {{ $order->email }}
+                                        Email: <a href="mailto:{{ $order->email }}">{{ $order->email }}</a>
                                     </address>
                                 </div>
                                 <div class="col-sm-4 invoice-col">
